@@ -4,14 +4,12 @@ import {
   CheckCircle2,
   ShieldCheck,
   Truck,
-  CreditCard,
   Lock,
   ArrowRight,
   Sparkles,
   ShoppingBag,
   Plus,
-  Minus,
-  Check
+  Minus
 } from 'lucide-react';
 import { PRODUCT_INFO, PRODUCT_VARIANTS } from '../data/productData';
 import { ProductVariant } from '../types';
@@ -61,8 +59,8 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
               <ShoppingBag className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-black text-sm sm:text-base">Shopify 原生结账抽屉</h3>
-              <p className="text-[10px] text-sky-300">PeptiDerm™ 官方正品直发</p>
+              <h3 className="font-black text-sm sm:text-base">Shopify Instant Cart & Checkout</h3>
+              <p className="text-[10px] text-sky-300">PeptiDerm™ Direct Medical Dispatch</p>
             </div>
           </div>
 
@@ -83,24 +81,24 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <div className="space-y-1">
-                <h3 className="text-xl font-black text-slate-900">恭喜！订单已成功生成</h3>
+                <h3 className="text-xl font-black text-slate-900">Order Confirmed Successfully!</h3>
                 <p className="text-xs text-slate-500">
-                  订单号: #PD-{Math.floor(100000 + Math.random() * 900000)} • 顺丰特快 24 小时内发出
+                  Order ID: #PD-{Math.floor(100000 + Math.random() * 900000)} • Tracked Express Dispatch in 24h
                 </p>
               </div>
 
               <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-left space-y-2 text-xs">
                 <div className="flex justify-between font-bold text-slate-800">
-                  <span>商品规格:</span>
+                  <span>Selected Course:</span>
                   <span>{selectedVariant.name} x {quantity}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
-                  <span>实付总额:</span>
+                  <span>Final Total:</span>
                   <span className="font-extrabold text-sky-700">${finalTotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-emerald-700 font-semibold pt-1 border-t border-slate-200">
-                  <span>赠送配件:</span>
-                  <span>包含冷感合金微导勺 + 28天打卡卡</span>
+                  <span>Complimentary Gifts:</span>
+                  <span>Cryo Sculpting Spatula + 28-Day Tracking Card</span>
                 </div>
               </div>
 
@@ -111,7 +109,7 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                 }}
                 className="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl cursor-pointer hover:bg-slate-800 transition-all"
               >
-                完成并返回页面
+                Done & Return to Store
               </button>
             </div>
           ) : (
@@ -119,7 +117,7 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
               {/* Variant Switcher Pills */}
               <div className="space-y-2">
                 <label className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 block">
-                  切换商品规格 (Variant Selection):
+                  Select Course Size (Shopify Variant):
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {PRODUCT_VARIANTS.map((v) => {
@@ -163,7 +161,7 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                     </span>
                   </div>
                   <span className="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.2 rounded">
-                    已立省 ${selectedVariant.savings.toFixed(2)}
+                    You Save ${selectedVariant.savings.toFixed(2)}
                   </span>
                 </div>
 
@@ -190,8 +188,8 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-sky-600 shrink-0" />
                   <div>
-                    <span className="font-extrabold text-slate-900 text-xs block">新人专享 9折券已自动应用</span>
-                    <span className="text-[10px] text-sky-700">优惠码: PEPTIDE10 (-10%)</span>
+                    <span className="font-extrabold text-slate-900 text-xs block">First Order 10% Off Applied</span>
+                    <span className="text-[10px] text-sky-700">Code: PEPTIDE10 (-10%)</span>
                   </div>
                 </div>
                 <span className="text-xs font-black text-emerald-700">
@@ -202,21 +200,21 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
               {/* Price Calculation Breakdown */}
               <div className="space-y-1.5 pt-2 border-t border-slate-100 text-xs">
                 <div className="flex justify-between text-slate-600">
-                  <span>商品小计</span>
+                  <span>Subtotal</span>
                   <span>${itemTotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
-                  <span>全球免运费 (Tracked Shipping)</span>
-                  <span className="text-emerald-600 font-bold">免费</span>
+                  <span>Worldwide Tracked Shipping</span>
+                  <span className="text-emerald-600 font-bold">FREE</span>
                 </div>
                 {discountApplied && (
                   <div className="flex justify-between text-emerald-700 font-bold">
-                    <span>专享折扣优惠</span>
+                    <span>Promo Discount (PEPTIDE10)</span>
                     <span>-${promoDiscount.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-slate-900 font-black text-base pt-2 border-t border-slate-200">
-                  <span>应付总计 (USD)</span>
+                  <span>Total (USD)</span>
                   <span className="text-sky-700">${finalTotal.toFixed(2)}</span>
                 </div>
               </div>
@@ -228,11 +226,11 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                 className="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black py-4 rounded-xl text-base shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
               >
                 {isCheckingOut ? (
-                  <span>正在安全对接 Shopify 结算中心...</span>
+                  <span>Connecting to Shopify Secure Checkout...</span>
                 ) : (
                   <>
                     <Lock className="w-4 h-4 text-slate-950" />
-                    <span>立即安全结账 • ${finalTotal.toFixed(2)}</span>
+                    <span>Secure Checkout • ${finalTotal.toFixed(2)}</span>
                     <ArrowRight className="w-4 h-4 text-slate-950" />
                   </>
                 )}
@@ -242,12 +240,12 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
               <div className="flex items-center justify-center gap-4 text-[11px] text-slate-500 pt-1">
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  256位 SSL 安全加密
+                  256-Bit SSL Encryption
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
                   <Truck className="w-3.5 h-3.5 text-sky-600" />
-                  顺丰/DHL 24h 发货
+                  Tracked 24h Dispatch
                 </span>
               </div>
             </>

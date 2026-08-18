@@ -1,5 +1,5 @@
 import React from 'react';
-import { Truck, RotateCcw, ArrowRight, Sparkles, ShieldCheck, Award, Star } from 'lucide-react';
+import { Truck, RotateCcw, ArrowRight, Sparkles, ShieldCheck, Award } from 'lucide-react';
 import { PRODUCT_INFO, PRODUCT_IMAGES } from '../data/productData';
 import { ProductVariant } from '../types';
 
@@ -23,18 +23,18 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick 
             <div className="relative aspect-4/3 rounded-2xl overflow-hidden border border-slate-700 shadow-md bg-slate-950">
               <img
                 src={PRODUCT_IMAGES.heroMain}
-                alt="PeptiDerm 多肽细胞更新抗衰保湿霜"
+                alt="PeptiDerm Cellular Renewal Multi-Peptide Cream"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute top-2.5 left-2.5 bg-sky-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wide">
-                官方直降限时特惠
+                Direct Lab Special
               </div>
             </div>
 
             <div className="bg-slate-800/80 border border-slate-700/80 rounded-xl p-3 text-center text-xs space-y-1">
               <span className="font-extrabold text-white block">{PRODUCT_INFO.name}</span>
-              <span className="text-slate-400 text-[11px] block">7重仿生多肽 • 28天双盲临床验证</span>
+              <span className="text-slate-400 text-[11px] block">7 Bio-Mimetic Peptides • 28-Day Clinical Trial Proof</span>
             </div>
           </div>
 
@@ -48,11 +48,11 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick 
               </div>
               
               <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
-                给肌肤一次温和且强效的胶原新生机会。
+                Give your skin the power of gentle, deep collagen regeneration.
               </h2>
 
               <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                无需忍受A醇脱皮刺痛，无需妥协于普通面霜的无功无过。现在下单，见证28天深层淡纹奇迹。
+                No peeling. No redness. No compromises. Order today and experience visible wrinkle volume reduction in 28 days.
               </p>
             </div>
 
@@ -65,7 +65,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick 
                 ${selectedVariant.compareAtPrice}
               </span>
               <span className="text-xs bg-emerald-950 text-emerald-300 font-bold px-2.5 py-1 rounded-full border border-emerald-700">
-                已选 {selectedVariant.size} (立省 ${selectedVariant.savings})
+                Selected: {selectedVariant.size} (Save ${selectedVariant.savings})
               </span>
             </div>
 
@@ -75,7 +75,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick 
                 onClick={onCtaClick}
                 className="w-full bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-black text-lg py-4 px-6 rounded-xl shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
               >
-                <span>立即订购 {selectedVariant.size} • ${selectedVariant.sellingPrice}</span>
+                <span>Order {selectedVariant.size} Now • ${selectedVariant.sellingPrice}</span>
                 <ArrowRight className="w-5 h-5 text-slate-950 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -83,17 +83,17 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick 
               <div className="flex items-center justify-center gap-4 text-xs font-semibold text-slate-400 mt-3">
                 <span className="flex items-center gap-1">
                   <Truck className="w-3.5 h-3.5 text-sky-400" />
-                  全球免运费
+                  Free Express Shipping
                 </span>
                 <span className="text-slate-600">•</span>
                 <span className="flex items-center gap-1">
                   <RotateCcw className="w-3.5 h-3.5 text-sky-400" />
-                  30天无理由退款
+                  30-Day Money-Back
                 </span>
                 <span className="text-slate-600">•</span>
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  100% 正品保障
+                  100% Authentic
                 </span>
               </div>
             </div>

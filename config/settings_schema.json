@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "PeptiDerm DTC Clinical Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "PeptiDerm Dermatology Laboratories",
+    "theme_documentation_url": "https://peptiderm.com",
+    "theme_support_url": "https://peptiderm.com/support"
+  },
+  {
+    "name": "Colors & Branding",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary Medical Blue",
+        "default": "#0284c7"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Accent Sky",
+        "default": "#38bdf8"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text Color",
+        "default": "#0f172a"
+      }
+    ]
+  },
+  {
+    "name": "Announcements & Promotions",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_announcement_bar",
+        "label": "Enable Top Announcement Bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement Text",
+        "default": "LIMITED TIME: UP TO 41% OFF + FREE CRYO SPATULA WITH 50ML/100ML + FREE WORLDWIDE SHIPPING"
+      }
+    ]
+  }
+]

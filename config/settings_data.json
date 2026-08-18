@@ -5,7 +5,7 @@
     "color_background": "#ffffff",
     "color_text": "#0f172a",
     "show_announcement_bar": true,
-    "announcement_text": "🔬 临床实验室限时特惠：首单享全场 9折 (券码 PEPTIDE10) | 全球免运费",
+    "announcement_text": "LIMITED TIME: UP TO 41% OFF + FREE CRYO SPATULA WITH 50ML/100ML + FREE WORLDWIDE SHIPPING",
     "sections": {
       "announcement-bar": {
         "type": "top-announcement",
@@ -28,7 +28,7 @@
       "color_background": "#ffffff",
       "color_text": "#0f172a",
       "show_announcement_bar": true,
-      "announcement_text": "🔬 临床实验室限时特惠：首单享全场 9折 (券码 PEPTIDE10) | 全球免运费"
+      "announcement_text": "LIMITED TIME: UP TO 41% OFF + FREE CRYO SPATULA WITH 50ML/100ML + FREE WORLDWIDE SHIPPING"
     }
   }
 }

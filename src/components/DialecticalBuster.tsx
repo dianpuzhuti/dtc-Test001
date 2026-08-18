@@ -1,15 +1,5 @@
-import React, { useState } from 'react';
-import {
-  Sparkles,
-  AlertTriangle,
-  CheckCircle2,
-  Activity,
-  ArrowRight,
-  ShieldAlert,
-  Zap,
-  Layers,
-  ChevronRight
-} from 'lucide-react';
+import React from 'react';
+import { ShieldCheck, Sparkles, Droplets, Zap, CheckCircle2, XCircle, ArrowRight } from 'lucide-react';
 import { DIALECTICAL_CONTRADICTIONS } from '../data/productData';
 
 interface DialecticalBusterProps {
@@ -17,175 +7,104 @@ interface DialecticalBusterProps {
 }
 
 export const DialecticalBuster: React.FC<DialecticalBusterProps> = ({ onCtaClick }) => {
-  const [activeTabId, setActiveTabId] = useState<string>("contradiction-tolerance");
-
-  const activeItem = DIALECTICAL_CONTRADICTIONS.find((c) => c.id === activeTabId) || DIALECTICAL_CONTRADICTIONS[0];
-
   return (
-    <section className="bg-slate-900 text-white py-16 px-4 sm:px-6 border-b border-slate-800 relative overflow-hidden">
-      
-      {/* Background Molecular Grid Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(#1e3a8a_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none"></div>
-
-      <div className="max-w-5xl mx-auto space-y-10 relative z-10">
+    <section className="bg-slate-900 text-white py-16 px-4 sm:px-6 border-b border-slate-800">
+      <div className="max-w-6xl mx-auto space-y-12">
         
         {/* Section Header */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 text-xs font-black px-3.5 py-1 rounded-full border border-sky-500/30 tracking-wider uppercase">
-            <Activity className="w-3.5 h-3.5" />
-            <span>DIALECTICAL BREAKTHROUGH • 矛盾论破局</span>
+        <div className="text-center space-y-3 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 text-xs font-black px-3.5 py-1 rounded-full border border-sky-500/30 uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+            <span>DIALECTICAL BREAKTHROUGH • RESOLVING CONTRADICTIONS</span>
           </div>
-          
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-snug">
-            破解传统抗衰三大对立矛盾
+
+          <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+            Breaking the Three Core Contradictions of Traditional Anti-Aging
           </h2>
-          
+
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            抗衰老不应是以牺牲皮肤屏障为代价的赌博。PeptiDerm 运用细胞生物学仿生信号肽，实现功效与温和的双重统一。
+            Anti-aging should never be a gamble that sacrifices your protective skin barrier. PeptiDerm leverages cellular bio-mimetic peptides to unify maximum potency with physiological gentleness.
           </p>
         </div>
 
-        {/* 3 Contradiction Selector Tabs */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {DIALECTICAL_CONTRADICTIONS.map((item) => {
-            const isSelected = item.id === activeTabId;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveTabId(item.id)}
-                className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between space-y-2 relative overflow-hidden ${
-                  isSelected
-                    ? 'border-sky-500 bg-sky-950/70 shadow-lg ring-2 ring-sky-500/30'
-                    : 'border-slate-800 bg-slate-800/60 hover:bg-slate-800 text-slate-300 hover:border-slate-700'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className={`text-[11px] font-black uppercase tracking-wider ${
-                    isSelected ? 'text-sky-400' : 'text-slate-400'
-                  }`}>
-                    {item.title.split('：')[0]}
-                  </span>
-                  <span className={`text-xs font-black ${
-                    isSelected ? 'text-white' : 'text-slate-500'
-                  }`}>
-                    {item.statNumber}
-                  </span>
-                </div>
+        {/* 3 Contradiction Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {DIALECTICAL_CONTRADICTIONS.map((item) => (
+            <div
+              key={item.id}
+              className="bg-slate-950/80 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between space-y-6 shadow-xl relative overflow-hidden group hover:border-sky-700/60 transition-colors"
+            >
+              <div className="space-y-4">
                 
-                <h3 className="font-extrabold text-sm sm:text-base text-white tracking-tight">
-                  {item.title.split('：')[1]}
-                </h3>
+                {/* Contradiction Title & Core Conflict */}
+                <div className="space-y-1.5 border-b border-slate-800 pb-3">
+                  <span className="text-[11px] font-black uppercase tracking-wider text-sky-400 block">
+                    {item.title}
+                  </span>
+                  <h3 className="font-extrabold text-white text-base leading-snug">
+                    {item.coreContradiction}
+                  </h3>
+                </div>
 
-                <p className="text-[11px] text-slate-400 line-clamp-1 italic">
-                  {item.coreContradiction}
-                </p>
-              </button>
-            );
-          })}
+                {/* Problem vs Breakthrough Comparison */}
+                <div className="space-y-3 text-xs">
+                  
+                  {/* Traditional Pain */}
+                  <div className="bg-red-950/40 border border-red-900/40 rounded-2xl p-3.5 space-y-1 text-red-200">
+                    <div className="flex items-center gap-1.5 font-bold text-red-400">
+                      <XCircle className="w-3.5 h-3.5 shrink-0" />
+                      <span>Conventional Flaw:</span>
+                    </div>
+                    <p className="text-slate-300 leading-relaxed">
+                      {item.traditionalPain}
+                    </p>
+                  </div>
+
+                  {/* PeptiDerm Breakthrough */}
+                  <div className="bg-sky-950/60 border border-sky-800/60 rounded-2xl p-3.5 space-y-1.5 text-sky-100">
+                    <div className="flex items-center gap-1.5 font-black text-sky-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                      <span>PeptiDerm Cellular Resolution:</span>
+                    </div>
+                    <span className="font-bold text-white block">
+                      {item.peptiDermBreakthrough}
+                    </span>
+                    <p className="text-slate-300 leading-relaxed text-[11px]">
+                      {item.molecularMechanism}
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+
+              {/* Stat Highlight Metric */}
+              <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                <div>
+                  <span className="text-xs text-slate-400 block">{item.statLabel}</span>
+                  <span className="text-2xl font-black text-sky-400">{item.statNumber}</span>
+                </div>
+                <div className="w-9 h-9 rounded-full bg-sky-900/50 flex items-center justify-center text-sky-300">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+              </div>
+
+            </div>
+          ))}
         </div>
 
-        {/* Selected Contradiction Deep-Dive Comparison Matrix */}
-        <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-8">
-          
-          {/* Header of Active Contradiction */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
-            <div>
-              <span className="text-xs font-bold text-sky-400 uppercase tracking-widest block">
-                {activeItem.title}
-              </span>
-              <h3 className="text-xl sm:text-2xl font-black text-white mt-1">
-                {activeItem.coreContradiction}
-              </h3>
-            </div>
-
-            <div className="bg-sky-900/40 border border-sky-500/40 rounded-2xl px-4 py-2 text-right shrink-0 flex items-center gap-3">
-              <div>
-                <span className="text-2xl sm:text-3xl font-black text-sky-300 block leading-none">
-                  {activeItem.statNumber}
-                </span>
-                <span className="text-[10px] text-slate-300 font-semibold">
-                  {activeItem.statLabel}
-                </span>
-              </div>
-              <Sparkles className="w-6 h-6 text-sky-400 shrink-0" />
-            </div>
-          </div>
-
-          {/* 2-Column Dialectical Battle: Traditional Dilemma vs PeptiDerm Breakthrough */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            {/* Left: Traditional Dilemma (The Thesis) */}
-            <div className="bg-red-950/30 border-2 border-red-900/40 rounded-2xl p-5 sm:p-6 space-y-4">
-              <div className="flex items-center gap-2 text-red-400 font-black text-xs uppercase tracking-wider bg-red-950/80 border border-red-800/80 px-3 py-1 rounded-full w-fit">
-                <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
-                <span>传统抗衰方案的困境与妥协</span>
-              </div>
-
-              <div className="space-y-3">
-                <div>
-                  <h4 className="text-sm font-black text-slate-200">受试者真实痛点：</h4>
-                  <p className="text-xs text-red-200/90 mt-1 leading-relaxed">
-                    {activeItem.traditionalPain}
-                  </p>
-                </div>
-
-                <div className="pt-2 border-t border-red-900/40 text-[11px] text-slate-400">
-                  <strong className="text-red-300">根源机制缺陷：</strong> {activeItem.traditionalWhy}
-                </div>
-              </div>
-            </div>
-
-            {/* Right: PeptiDerm Synthesis Breakthrough (The Dialectical Resolution) */}
-            <div className="bg-gradient-to-b from-sky-950/60 to-slate-900 border-2 border-sky-500/60 rounded-2xl p-5 sm:p-6 space-y-4 shadow-lg relative">
-              
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-sky-300 font-black text-xs uppercase tracking-wider bg-sky-900/80 border border-sky-500/60 px-3 py-1 rounded-full w-fit">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400" />
-                  <span>PeptiDerm 多肽仿生破局方案</span>
-                </div>
-                <span className="text-[10px] font-black text-emerald-400 uppercase bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
-                  100% 破局
-                </span>
-              </div>
-
-              <div className="space-y-3">
-                <div>
-                  <h4 className="text-sm font-black text-white">生物分子技术创新：</h4>
-                  <p className="text-xs text-sky-100 font-semibold mt-1">
-                    {activeItem.peptiDermBreakthrough}
-                  </p>
-                </div>
-
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  {activeItem.molecularMechanism}
-                </p>
-
-                <div className="pt-2 border-t border-sky-800/80 text-[11px] text-sky-300 font-bold flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                  <span>{activeItem.clinicalProof}</span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* Bottom Action Strip */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3 border-t border-slate-800">
-            <div className="flex items-center gap-2 text-xs text-slate-300 font-medium">
-              <Zap className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>无需建立耐受 • 早晚均可涂抹 • 敏感肌直接见证淡纹</span>
-            </div>
-
-            <button
-              onClick={onCtaClick}
-              className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-black text-xs px-5 py-3 rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98 shadow-md"
-            >
-              <span>体验多肽破局配方 $29 起</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-
+        {/* CTA Bar */}
+        <div className="bg-gradient-to-r from-sky-950 via-slate-900 to-sky-950 border border-sky-800/50 rounded-3xl p-6 text-center space-y-4 max-w-2xl mx-auto">
+          <h4 className="text-lg font-black text-white">
+            Ready to experience gentle, clinical-grade wrinkle reduction?
+          </h4>
+          <button
+            onClick={onCtaClick}
+            className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-black px-8 py-3.5 rounded-xl text-sm transition-all shadow-lg inline-flex items-center gap-2 cursor-pointer active:scale-98"
+          >
+            <span>Start Your 28-Day Clinical Trial ($29+)</span>
+            <ArrowRight className="w-4 h-4 text-slate-950" />
+          </button>
         </div>
 
       </div>

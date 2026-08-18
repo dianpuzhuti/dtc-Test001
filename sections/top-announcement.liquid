@@ -4,18 +4,18 @@
     
     <div class="hidden md:flex items-center gap-2 text-sky-300 font-bold">
       <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span>{{ section.settings.left_badge | default: 'GMP 医药级生产标准 • 瑞士 SGS 临床检测' }}</span>
+      <span>{{ section.settings.left_badge | default: 'GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED' }}</span>
     </div>
 
     <div class="flex-1 text-center font-extrabold tracking-wide flex items-center justify-center gap-2">
       <span class="bg-sky-500 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-2xs">
-        {{ section.settings.tag | default: '限时首发' }}
+        {{ section.settings.tag | default: 'FLASH SPECIAL' }}
       </span>
-      <span>{{ section.settings.message | default: '全场限时直降高达 41% OFF • 首单赠医用冷感合金微导勺 • 全球包邮' }}</span>
+      <span>{{ section.settings.message | default: 'LIMITED TIME: UP TO 41% OFF + FREE CRYO SPATULA WITH 50ML/100ML + FREE WORLDWIDE SHIPPING' }}</span>
     </div>
 
     <div class="hidden md:flex items-center gap-3 text-slate-300 font-medium">
-      <span>30天无理由退款保障</span>
+      <span>30-Day Money-Back Guarantee</span>
     </div>
 
   </div>
@@ -24,31 +24,31 @@
 
 {% schema %}
 {
-  "name": "顶部促销横幅",
+  "name": "Top Announcement Bar",
   "settings": [
     {
       "type": "checkbox",
       "id": "show_bar",
-      "label": "启用顶部横幅",
+      "label": "Show Announcement Bar",
       "default": true
     },
     {
       "type": "text",
       "id": "tag",
-      "label": "标签",
-      "default": "限时首发"
+      "label": "Tag",
+      "default": "FLASH SPECIAL"
     },
     {
       "type": "text",
       "id": "message",
-      "label": "横幅文案",
-      "default": "全场限时直降高达 41% OFF • 首单赠医用冷感合金微导勺 • 全球包邮"
+      "label": "Message",
+      "default": "LIMITED TIME: UP TO 41% OFF + FREE CRYO SPATULA WITH 50ML/100ML + FREE WORLDWIDE SHIPPING"
     },
     {
       "type": "text",
       "id": "left_badge",
-      "label": "左侧背书",
-      "default": "GMP 医药级生产标准 • 瑞士 SGS 临床检测"
+      "label": "Left Guarantee Badge",
+      "default": "GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED"
     }
   ]
 }

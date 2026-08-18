@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ShoppingBag, ArrowRight } from 'lucide-react';
 import { ProductVariant } from '../types';
 
 interface StickyMobileBarProps {
@@ -26,7 +26,7 @@ export const StickyMobileBar: React.FC<StickyMobileBarProps> = ({
             </span>
           </div>
           <span className="text-[10px] text-sky-400 font-bold">
-            已选 {selectedVariant.size} (省 ${selectedVariant.savings})
+            {selectedVariant.size} (Save ${selectedVariant.savings})
           </span>
         </div>
 
@@ -35,7 +35,7 @@ export const StickyMobileBar: React.FC<StickyMobileBarProps> = ({
           onClick={onCtaClick}
           className="flex-1 bg-gradient-to-r from-sky-400 to-sky-500 active:scale-98 text-slate-950 font-black text-sm py-3 px-4 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition-all cursor-pointer"
         >
-          <span>立即选购</span>
+          <span>Order Now</span>
           <ArrowRight className="w-4 h-4 text-slate-950" />
         </button>
 

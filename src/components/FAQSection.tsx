@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, ShieldCheck, MessageCircleQuestion } from 'lucide-react';
+import { ChevronDown, ShieldCheck, MessageCircleQuestion } from 'lucide-react';
 import { FAQ_LIST } from '../data/productData';
 
 export const FAQSection: React.FC = () => {
@@ -17,15 +17,15 @@ export const FAQSection: React.FC = () => {
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 tracking-wider uppercase">
             <MessageCircleQuestion className="w-3.5 h-3.5 text-sky-700" />
-            <span>CLINICAL ADVISORY • 皮肤科医生常见疑虑解答</span>
+            <span>CLINICAL ADVISORY • FREQUENTLY ASKED QUESTIONS</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-            关于多肽细胞抗老，您想了解的一切
+            Everything You Need to Know About Bio-Peptide Anti-Aging
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            科学护肤，明明白白消费。以下为临床实验室针对核心关切的专业解答。
+            Evidence-based skincare with zero fluff. Direct answers from our clinical formulation advisory board.
           </p>
         </div>
 
@@ -70,7 +70,7 @@ export const FAQSection: React.FC = () => {
         {/* Doctor Consultation Note */}
         <div className="bg-sky-50/80 border border-sky-200 rounded-2xl p-4 text-center text-xs text-sky-950 flex items-center justify-center gap-2">
           <ShieldCheck className="w-4 h-4 text-sky-600 shrink-0" />
-          <span>仍有其他肤质疑问？我们的在线皮肤科顾问团队提供 1v1 免费咨询。</span>
+          <span>Have specific questions regarding your skin type? Our dermatology support team is available 24/7.</span>
         </div>
 
       </div>

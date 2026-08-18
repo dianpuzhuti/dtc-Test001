@@ -1,6 +1,6 @@
 import React from 'react';
-import { Truck, RotateCcw, ArrowRight, Tag, Sparkles, Check, ShieldCheck, Flame, Award } from 'lucide-react';
-import { PRODUCT_VARIANTS, PRODUCT_INFO } from '../data/productData';
+import { CheckCircle2, Sparkles, Truck, ShieldCheck, ArrowRight } from 'lucide-react';
+import { PRODUCT_VARIANTS } from '../data/productData';
 import { ProductVariant } from '../types';
 
 interface ValueSectionProps {
@@ -15,146 +15,129 @@ export const ValueSection: React.FC<ValueSectionProps> = ({
   onCtaClick,
 }) => {
   return (
-    <section className="bg-white py-16 px-4 sm:px-6 border-b border-slate-200">
-      <div className="max-w-5xl mx-auto space-y-12">
+    <section className="bg-slate-50 py-16 px-4 sm:px-6 border-b border-slate-200">
+      <div className="max-w-6xl mx-auto space-y-12">
         
         {/* Section Header */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 tracking-wider uppercase">
-            <Tag className="w-3.5 h-3.5 text-sky-700" />
-            <span>CLINICAL PRICING MATRIX • 官方直降选购</span>
+        <div className="text-center space-y-3 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-sky-700" />
+            <span>OFFICIAL PRICING • 1:1 SHOPIFY VARIANT MATRIX</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-            选择适合您的细胞逆龄疗程
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            Choose Your Clinical Cellular Rejuvenation Regimen
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            临床皮肤科医生推荐按 28 天细胞代谢周期使用。选择多瓶或大容量装享更高折扣与专属赠品。
+            Dermatologists recommend following the natural 28-day skin cellular turnover cycle. Multi-bottle regimens include exclusive gifts and higher savings.
           </p>
         </div>
 
-        {/* 3 Variant Pricing Cards */}
+        {/* 3 Shopify Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           {PRODUCT_VARIANTS.map((variant) => {
             const isSelected = selectedVariant.id === variant.id;
             return (
               <div
                 key={variant.id}
-                onClick={() => onSelectVariant(variant)}
-                className={`rounded-3xl border-2 p-6 sm:p-7 flex flex-col justify-between space-y-6 transition-all cursor-pointer relative ${
+                className={`rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-6 transition-all relative ${
                   variant.isPopular
-                    ? 'border-sky-600 bg-gradient-to-b from-sky-50/70 to-white shadow-xl ring-2 ring-sky-600/20 md:-translate-y-2'
-                    : isSelected
-                    ? 'border-sky-500 bg-white shadow-lg ring-2 ring-sky-500/10'
-                    : 'border-slate-200 bg-white hover:border-slate-300 shadow-2xs'
+                    ? 'bg-gradient-to-b from-sky-50 to-white border-2 border-sky-600 shadow-xl md:-translate-y-2'
+                    : 'bg-white border border-slate-200 shadow-sm'
                 }`}
               >
-                {/* Top Badge */}
-                {variant.badge && (
-                  <div className={`absolute -top-3.5 left-1/2 -translate-x-1/2 text-xs font-black px-3.5 py-1 rounded-full shadow-xs whitespace-nowrap ${
-                    variant.isPopular
-                      ? 'bg-amber-500 text-slate-950'
-                      : variant.isBestValue
-                      ? 'bg-sky-800 text-white'
-                      : 'bg-slate-800 text-white'
-                  }`}>
-                    {variant.badge}
+                {/* Popular / Best Value Badge */}
+                {variant.isPopular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs font-black px-4 py-1 rounded-full shadow-sm whitespace-nowrap">
+                    🔥 82% OF USERS CHOOSE THIS
+                  </div>
+                )}
+                {variant.isBestValue && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-sky-900 text-white text-xs font-black px-4 py-1 rounded-full shadow-sm whitespace-nowrap">
+                    👑 HIGHEST VALUE / MAXIMUM SAVINGS
                   </div>
                 )}
 
                 <div className="space-y-4 pt-1">
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-xl font-black text-slate-900">{variant.size}</h3>
-                      <span className="text-xs font-extrabold text-sky-700 bg-sky-100 px-2 py-0.5 rounded">
-                        立省 ${variant.savings}
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="font-black text-xl text-slate-900">
+                        {variant.name}
+                      </h3>
+                      <span className="text-xs text-slate-500 block mt-0.5">
+                        {variant.supplyDuration}
                       </span>
                     </div>
-                    <span className="text-xs text-slate-500 font-medium block mt-0.5">
-                      {variant.volume} • {variant.supplyDuration}
+                    <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md shrink-0">
+                      Save ${variant.savings}
                     </span>
                   </div>
 
-                  {/* Price */}
-                  <div className="space-y-1">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-3xl sm:text-4xl font-black text-slate-900">
-                        ${variant.sellingPrice}
-                      </span>
-                      <span className="text-sm text-slate-400 line-through font-semibold">
-                        ${variant.compareAtPrice}
-                      </span>
-                    </div>
-                    <span className="text-[11px] text-emerald-600 font-extrabold block">
-                      立省 {variant.savingsPercent}% • 平均 ${(variant.sellingPrice / (variant.size === '30ml' ? 20 : variant.size === '50ml' ? 45 : 90)).toFixed(2)}/天
+                  {/* Price Row */}
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl font-black text-slate-900">
+                      ${variant.sellingPrice}
+                    </span>
+                    <span className="text-base text-slate-400 line-through">
+                      ${variant.compareAtPrice}
                     </span>
                   </div>
 
-                  {/* Subtitle description */}
-                  <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     {variant.subTitle}
                   </p>
 
-                  {/* Gifts and inclusions list */}
-                  <div className="space-y-2 pt-2 border-t border-slate-100 text-xs">
-                    <span className="font-extrabold text-slate-800 text-[11px] block">
-                      包含配置与权益：
-                    </span>
-                    <ul className="space-y-1.5 text-slate-600 text-[11px]">
-                      {variant.includesGifts.map((gift, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5">
-                          <Check className="w-3.5 h-3.5 text-sky-600 shrink-0 mt-0.5" />
+                  {/* Inclusions List */}
+                  {variant.includesGifts && (
+                    <ul className="space-y-2 pt-3 border-t border-slate-200/80 text-xs text-slate-700 font-medium">
+                      {variant.includesGifts.map((gift, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                           <span>{gift}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  )}
                 </div>
 
-                {/* Card Action Button */}
-                <div className="space-y-2 pt-2">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelectVariant(variant);
-                      onCtaClick();
-                    }}
-                    className={`w-full py-3.5 px-4 rounded-xl font-black text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98 ${
-                      variant.isPopular
-                        ? 'bg-sky-600 hover:bg-sky-500 text-white shadow-md'
-                        : isSelected
-                        ? 'bg-slate-900 hover:bg-slate-800 text-white'
-                        : 'bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200'
-                    }`}
-                  >
-                    <span>选购 {variant.size} (${variant.sellingPrice})</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
+                {/* Card CTA Button */}
+                <button
+                  onClick={() => {
+                    onSelectVariant(variant);
+                    onCtaClick();
+                  }}
+                  className={`w-full py-4 rounded-xl font-black text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    variant.isPopular
+                      ? 'bg-sky-600 hover:bg-sky-500 text-white shadow-md active:scale-98'
+                      : 'bg-slate-900 hover:bg-slate-800 text-white active:scale-98'
+                  }`}
+                >
+                  <span>Select {variant.size} • ${variant.sellingPrice}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
 
-                  <span className="text-[10px] text-center block text-slate-400 font-semibold">
-                    库存仅剩 {variant.stockLeft} 瓶 • 支持30天退款保障
-                  </span>
-                </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom Trust Guarantee Strip */}
-        <div className="max-w-2xl mx-auto flex items-center justify-center gap-6 text-xs text-slate-600 font-semibold text-center">
-          <div className="flex items-center gap-1.5">
+        {/* Risk-Free Assurance Footer Strip */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-600 font-medium text-center">
+          <span className="flex items-center gap-1.5">
             <Truck className="w-4 h-4 text-sky-600" />
-            <span>全境极速免费包邮</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <RotateCcw className="w-4 h-4 text-sky-600" />
-            <span>30天无理由退款</span>
-          </div>
-          <div className="flex items-center gap-1.5">
+            Free Worldwide Tracked Shipping
+          </span>
+          <span>•</span>
+          <span className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>瑞士 SGS 安全认证</span>
-          </div>
+            30-Day Unconditional Money-Back Guarantee
+          </span>
+          <span>•</span>
+          <span className="flex items-center gap-1.5">
+            <Sparkles className="w-4 h-4 text-sky-600" />
+            100% Authentic Medical Laboratory Direct
+          </span>
         </div>
 
       </div>

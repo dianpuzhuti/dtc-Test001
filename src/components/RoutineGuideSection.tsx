@@ -1,95 +1,96 @@
 import React from 'react';
-import { Sun, Moon, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
-import { PRODUCT_IMAGES } from '../data/productData';
+import { Sun, Moon, Sparkles, CheckCircle2, ShieldCheck, Clock } from 'lucide-react';
 
 export const RoutineGuideSection: React.FC = () => {
   return (
-    <section className="bg-slate-50 py-16 px-4 sm:px-6 border-b border-slate-200">
+    <section className="bg-white py-16 px-4 sm:px-6 border-b border-slate-200">
       <div className="max-w-5xl mx-auto space-y-12">
         
         {/* Section Header */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 tracking-wider uppercase">
-            <Sparkles className="w-3.5 h-3.5 text-sky-700" />
-            <span>CLINICAL RITUAL • 临床级晨晚护肤仪式</span>
+        <div className="text-center space-y-3 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 uppercase tracking-wider">
+            <Clock className="w-3.5 h-3.5 text-sky-700" />
+            <span>CLINICAL PROTOCOL • AM & PM APPLICATION</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
-            早抗糖抗光老，晚促胶原新生
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            How to Use PeptiDerm in Your Daily Clinical Routine
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            无光敏性配方，早晚皆宜。配合赠送的医用冷感锌合金微导勺，促进面部淋巴排浊与微循环。
+            Unlike photosensitive retinoids, our bio-peptide formula is non-photosensitive and empowers both morning oxidative protection and evening deep collagen repair.
           </p>
         </div>
 
-        {/* 2-Card Morning & Evening Protocol */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* 2-Column Morning / Evening Ritual */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
-          {/* Morning Card */}
-          <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-7 shadow-2xs space-y-4 relative overflow-hidden group hover:border-sky-300 transition-all">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-black">
+          {/* Morning Routine Card */}
+          <div className="bg-sky-50/50 border border-sky-200/80 rounded-3xl p-6 sm:p-8 space-y-5">
+            <div className="flex items-center justify-between border-b border-sky-200/60 pb-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center">
                   <Sun className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-xs font-black text-amber-900 uppercase">AM MORNING PROTOCOL</span>
-                  <h3 className="font-black text-base text-slate-900">晨间：抗糖抗氧化 • 哑光持妆</h3>
+                  <span className="text-xs font-black uppercase text-amber-700 tracking-wider">Step 04 • Morning</span>
+                  <h3 className="text-lg font-black text-slate-900">Anti-Glycation & Photo-Defense</h3>
                 </div>
               </div>
-              <span className="text-[11px] font-extrabold bg-slate-100 text-slate-700 px-2 py-0.5 rounded">
-                无光敏性
-              </span>
             </div>
 
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-              左旋肌肽优先抵御日间紫外线糖化反应，角鲨烷形成透气哑光薄膜，不搓泥、不浮油，后续底妆服帖一整天。
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              In the morning, Decarboxy Carnosine and 5 Ceramides shield against daytime free radicals, blue light, and sugar-induced collagen stiffening.
             </p>
 
-            <ul className="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-100">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
-                <span>洁面与水精华后，按压1泵均匀涂抹全脸</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
-                <span>3秒瞬吸化水，直接跟防晒与妆容</span>
-              </li>
-            </ul>
+            <div className="space-y-2.5 text-xs text-slate-700 font-medium">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
+                <span>Apply 1 pump after cleanser and Vitamin C serum</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
+                <span>Absorbs in 3 seconds to a breathable matte primer finish</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
+                <span>Follow with daily sunscreen; makeup glides on without pilling</span>
+              </div>
+            </div>
           </div>
 
-          {/* Evening Card */}
-          <div className="bg-slate-900 text-white border border-slate-800 rounded-3xl p-6 sm:p-7 shadow-lg space-y-4 relative overflow-hidden group hover:border-sky-500 transition-all">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-9 h-9 rounded-xl bg-sky-900 text-sky-300 flex items-center justify-center font-black">
+          {/* Evening Routine Card */}
+          <div className="bg-slate-950 text-white border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-2xl bg-sky-900 text-sky-300 flex items-center justify-center">
                   <Moon className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-xs font-black text-sky-400 uppercase">PM NIGHT PROTOCOL</span>
-                  <h3 className="font-black text-base text-white">夜间：深层促胶原 • 密集淡纹</h3>
+                  <span className="text-xs font-black uppercase text-sky-400 tracking-wider">Step 04 • Evening</span>
+                  <h3 className="text-lg font-black text-white">Deep Cellular Collagen Sculpting</h3>
                 </div>
               </div>
-              <span className="text-[11px] font-extrabold bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-800">
-                黄金修护期
-              </span>
             </div>
 
-            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              夜间细胞代谢旺盛期，乙酰基六肽-8与蓝铜胜肽协同渗透真皮层，舒缓表情纹肌肉紧张，激活内源性胶原网重构。
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              During your skin’s peak nighttime repair cycle, Copper Tripeptide and Hexapeptide-8 activate fibroblasts for intensive tissue rebuilding.
             </p>
 
-            <ul className="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
-                <span>按压2泵，在眼周、法令纹、抬头纹处重点厚敷</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
-                <span>用冷感合金微导勺沿下颌线向上提拉3-5次</span>
-              </li>
-            </ul>
+            <div className="space-y-2.5 text-xs text-slate-300 font-medium">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                <span>Apply 1-2 pumps over cleansed face, neck, and décolletage</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                <span>Use the cold zinc-alloy spatula in upward strokes along jawline</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                <span>Wake up to deeply plump, calm, and rested skin with zero pillow grease</span>
+              </div>
+            </div>
           </div>
 
         </div>
