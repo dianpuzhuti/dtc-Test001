@@ -1,5 +1,42 @@
-{% assign current_product = section.settings.product | default: all_products.first %}
+{% assign current_product = section.settings.product | default: collections.all.products.first | default: all_products.first %}
 {% assign default_variant = current_product.selected_or_first_available_variant %}
+
+<script>
+  window.peptidermShopifyProducts = [
+    {% if section.settings.product != blank %}
+      {
+        id: {{ section.settings.product.id | json }},
+        title: {{ section.settings.product.title | json }},
+        handle: {{ section.settings.product.handle | json }},
+        variants: [
+          {% for v in section.settings.product.variants %}
+            {
+              id: {{ v.id | json }},
+              title: {{ v.title | json }},
+              price: {{ v.price | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      },
+    {% endif %}
+    {% for p in collections.all.products limit: 10 %}
+      {
+        id: {{ p.id | json }},
+        title: {{ p.title | json }},
+        handle: {{ p.handle | json }},
+        variants: [
+          {% for v in p.variants %}
+            {
+              id: {{ v.id | json }},
+              title: {{ v.title | json }},
+              price: {{ v.price | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+</script>
 
 <!-- Hidden Native Shopify Cart/Checkout Form -->
 <form action="/cart/add" method="post" enctype="multipart/form-data" id="peptiderm-add-to-cart-form" class="hidden">
