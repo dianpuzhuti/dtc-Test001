@@ -1,3 +1,13 @@
+{% assign current_product = section.settings.product | default: all_products.first %}
+{% assign default_variant = current_product.selected_or_first_available_variant %}
+
+<!-- Hidden Native Shopify Cart/Checkout Form -->
+<form action="/cart/add" method="post" enctype="multipart/form-data" id="peptiderm-add-to-cart-form" class="hidden">
+  <input type="hidden" name="id" id="peptiderm-variant-id-input" value="{{ default_variant.id | default: '' }}">
+  <input type="hidden" name="quantity" id="peptiderm-quantity-input" value="1">
+  <input type="hidden" name="return_to" value="/checkout">
+</form>
+
 <div id="peptiderm-shopify-root" class="w-full text-slate-900 bg-white font-sans antialiased selection:bg-sky-200 selection:text-sky-950">
   
   <!-- ========================================== -->
@@ -101,7 +111,7 @@
             <!-- 30ml Starter -->
             <button
               type="button"
-              onclick="selectThemeVariant('30ml', 29, 49, '30ml Discovery Starter Kit (2-3 Weeks Supply)')"
+              onclick="selectThemeVariant('30ml', 29, 49, '30ml Discovery Starter Kit (2-3 Weeks Supply)', '{{ current_product.variants[0].id | default: '' }}')"
               id="var-btn-30ml"
               class="variant-btn p-3 rounded-2xl border text-left bg-white border-slate-200 hover:border-sky-400 transition-all cursor-pointer"
             >
@@ -113,7 +123,7 @@
             <!-- 50ml Most Popular -->
             <button
               type="button"
-              onclick="selectThemeVariant('50ml', 49, 79, '50ml Core Treatment (Full 28-Day Cycle • FREE Cryo Spatula)')"
+              onclick="selectThemeVariant('50ml', 49, 79, '50ml Core Treatment (Full 28-Day Cycle • FREE Cryo Spatula)', '{{ current_product.variants[1].id | default: default_variant.id }}')"
               id="var-btn-50ml"
               class="variant-btn p-3 rounded-2xl border-2 text-left bg-sky-50/80 border-sky-600 ring-2 ring-sky-600/20 shadow-sm transition-all cursor-pointer relative"
             >
@@ -128,7 +138,7 @@
             <!-- 100ml Best Value -->
             <button
               type="button"
-              onclick="selectThemeVariant('100ml', 79, 129, '100ml Clinical Course (3-4 Months • FREE 30ml + Spatula)')"
+              onclick="selectThemeVariant('100ml', 79, 129, '100ml Clinical Course (3-4 Months • FREE 30ml + Spatula)', '{{ current_product.variants[2].id | default: '' }}')"
               id="var-btn-100ml"
               class="variant-btn p-3 rounded-2xl border text-left bg-white border-slate-200 hover:border-sky-400 transition-all cursor-pointer relative"
             >
@@ -768,7 +778,7 @@
           </div>
           <button
             type="button"
-            onclick="selectThemeVariant('30ml', 29, 49, '30ml Starter'); openShopifyCartDrawer();"
+            onclick="selectThemeVariant('30ml', 29, 49, '30ml Starter', '{{ current_product.variants[0].id | default: '' }}'); openShopifyCartDrawer();"
             class="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold py-3.5 rounded-xl text-xs transition-all cursor-pointer"
           >
             Select 30ml ($29)
@@ -799,7 +809,7 @@
           </div>
           <button
             type="button"
-            onclick="selectThemeVariant('50ml', 49, 79, '50ml Core Treatment'); openShopifyCartDrawer();"
+            onclick="selectThemeVariant('50ml', 49, 79, '50ml Core Treatment', '{{ current_product.variants[1].id | default: default_variant.id }}'); openShopifyCartDrawer();"
             class="w-full bg-sky-600 hover:bg-sky-500 text-white font-black py-4 rounded-xl text-sm transition-all shadow-md cursor-pointer active:scale-98"
           >
             Claim 50ml Regimen ($49)
@@ -826,7 +836,7 @@
           </div>
           <button
             type="button"
-            onclick="selectThemeVariant('100ml', 79, 129, '100ml Clinical Course'); openShopifyCartDrawer();"
+            onclick="selectThemeVariant('100ml', 79, 129, '100ml Clinical Course', '{{ current_product.variants[2].id | default: '' }}'); openShopifyCartDrawer();"
             class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl text-xs transition-all cursor-pointer"
           >
             Select 100ml ($79)
@@ -979,7 +989,7 @@
 </div>
 
 <!-- ========================================== -->
-  <!-- 13. SHOPIFY CART DRAWER MODAL OVERLAY -->
+<!-- 13. SHOPIFY CART DRAWER MODAL OVERLAY -->
 <!-- ========================================== -->
 <div id="shopify-cart-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-sm hidden">
   <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 text-slate-900 relative">
@@ -1026,6 +1036,7 @@
 
       <button
         type="button"
+        id="checkout-action-btn"
         onclick="submitToShopifyCheckout()"
         class="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black py-4 rounded-xl text-base shadow-lg transition-all cursor-pointer"
       >
@@ -1055,6 +1066,11 @@
       "id": "subheading",
       "label": "Subheading",
       "default": "Resolve the anti-aging contradiction: potent clinical wrinkle repair without barrier damage, peeling, or irritation. Experience 99.8% physiological tolerance and -42.8% wrinkle depth reduction."
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Link Shopify Product (Optional)"
     }
   ],
   "presets": [
