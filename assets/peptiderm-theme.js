@@ -16,6 +16,8 @@ function selectThemeVariant(size, price, comparePrice, desc) {
   const labelElem = document.getElementById('selected-variant-label');
   const priceElem = document.getElementById('selected-price-display');
   const compareElem = document.getElementById('selected-compare-display');
+  const mobilePrice = document.getElementById('mobile-price-display');
+  const mobileCompare = document.getElementById('mobile-compare-display');
   const cartTitle = document.getElementById('modal-cart-title');
   const cartPrice = document.getElementById('modal-cart-price');
   const cartTotal = document.getElementById('modal-cart-total');
@@ -23,6 +25,8 @@ function selectThemeVariant(size, price, comparePrice, desc) {
   if (labelElem) labelElem.textContent = desc;
   if (priceElem) priceElem.textContent = `$${price.toFixed(2)}`;
   if (compareElem) compareElem.textContent = `$${comparePrice.toFixed(2)}`;
+  if (mobilePrice) mobilePrice.textContent = `$${price}`;
+  if (mobileCompare) mobileCompare.textContent = `$${comparePrice}`;
   if (cartTitle) cartTitle.textContent = desc;
   if (cartPrice) cartPrice.textContent = `$${price.toFixed(2)}`;
   if (cartTotal) cartTotal.textContent = `$${(price * 0.9).toFixed(2)}`;
@@ -74,8 +78,6 @@ function openShopifyCartDrawer() {
   const modal = document.getElementById('shopify-cart-modal');
   if (modal) {
     modal.classList.remove('hidden');
-  } else {
-    window.location.href = '/cart';
   }
 }
 
@@ -85,10 +87,7 @@ function closeShopifyCartDrawer() {
 }
 
 function submitToShopifyCheckout() {
-  if (window.Shopify && window.Shopify.routes) {
-    window.location.href = '/checkout';
-  } else {
-    alert(`Thank you! Proceeding to checkout for ${window.peptidermState.selectedDescription}...`);
-    closeShopifyCartDrawer();
-  }
+  // If in standard Shopify storefront
+  const checkoutUrl = `/cart/add?id=1&quantity=1`;
+  window.location.href = '/checkout';
 }
