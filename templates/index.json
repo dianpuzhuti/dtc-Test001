@@ -1,0 +1,15 @@
+{
+  "name": "Home page",
+  "sections": {
+    "peptiderm_landing": {
+      "type": "peptiderm-landing",
+      "settings": {
+        "heading": "7重高纯仿生多肽 • 28天重构胶原年轻态",
+        "subheading": "突破传统抗衰与屏障耐受的对立矛盾。无需建立耐受，早晚皆宜，见证 99.8% 温和度与 -42.8% 皱纹深度改善。"
+      }
+    }
+  },
+  "order": [
+    "peptiderm_landing"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "跳至主要内容",
+      "close": "关闭",
+      "cart_drawer": "购物车抽屉"
+    },
+    "meta": {
+      "tags": "标签",
+      "page": "第 {{ page }} 页"
+    },
+    "404": {
+      "title": "404 页面未找到",
+      "subtext": "您访问的页面不存在或已被移除。",
+      "link": "返回首页继续选购"
+    }
+  },
+  "sections": {
+    "header": {
+      "cart_count": "购物车 ({{ count }})",
+      "menu": "菜单"
+    },
+    "cart": {
+      "title": "您的购物车",
+      "empty": "购物车空空如也",
+      "checkout": "立即安全结账",
+      "subtotal": "商品小计",
+      "savings": "已为您立省",
+      "shipping_note": "享受顺丰/DHL 全球免运费"
+    },
+    "product": {
+      "add_to_cart": "加入购物车",
+      "buy_now": "立即订购",
+      "sold_out": "已售罄",
+      "regular_price": "原价",
+      "sale_price": "特惠价"
+    }
+  }
+}

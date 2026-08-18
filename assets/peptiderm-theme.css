@@ -1,0 +1,18 @@
+/* PeptiDerm DTC Clinical Shopify Theme Assets */
+:root {
+  --primary-blue: #0284c7;
+  --dark-slate: #0f172a;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #0f172a;
+  background-color: #ffffff;
+}
+
+.variant-btn.active {
+  border-color: #0284c7 !important;
+  background-color: #f0f9ff !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}

@@ -1,0 +1,55 @@
+{%- if section.settings.show_bar -%}
+<div class="bg-gradient-to-r from-slate-900 via-sky-950 to-slate-900 text-white text-xs py-2.5 px-4 border-b border-sky-900/60 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+    
+    <div class="hidden md:flex items-center gap-2 text-sky-300 font-bold">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>{{ section.settings.left_badge | default: 'GMP 医药级生产标准 • 瑞士 SGS 临床检测' }}</span>
+    </div>
+
+    <div class="flex-1 text-center font-extrabold tracking-wide flex items-center justify-center gap-2">
+      <span class="bg-sky-500 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-2xs">
+        {{ section.settings.tag | default: '限时首发' }}
+      </span>
+      <span>{{ section.settings.message | default: '全场限时直降高达 41% OFF • 首单赠医用冷感合金微导勺 • 全球包邮' }}</span>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3 text-slate-300 font-medium">
+      <span>30天无理由退款保障</span>
+    </div>
+
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "顶部促销横幅",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "启用顶部横幅",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "标签",
+      "default": "限时首发"
+    },
+    {
+      "type": "text",
+      "id": "message",
+      "label": "横幅文案",
+      "default": "全场限时直降高达 41% OFF • 首单赠医用冷感合金微导勺 • 全球包邮"
+    },
+    {
+      "type": "text",
+      "id": "left_badge",
+      "label": "左侧背书",
+      "default": "GMP 医药级生产标准 • 瑞士 SGS 临床检测"
+    }
+  ]
+}
+{% endschema %}

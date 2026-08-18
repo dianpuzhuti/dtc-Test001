@@ -1,0 +1,39 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "cart_drawer": "Cart drawer"
+    },
+    "meta": {
+      "tags": "Tags",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "404 Page Not Found",
+      "subtext": "The page you requested does not exist.",
+      "link": "Continue shopping"
+    }
+  },
+  "sections": {
+    "header": {
+      "cart_count": "Cart ({{ count }})",
+      "menu": "Menu"
+    },
+    "cart": {
+      "title": "Your Cart",
+      "empty": "Your cart is currently empty",
+      "checkout": "Proceed to Checkout",
+      "subtotal": "Subtotal",
+      "savings": "You save",
+      "shipping_note": "Free tracked worldwide shipping"
+    },
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "buy_now": "Order Now",
+      "sold_out": "Sold Out",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price"
+    }
+  }
+}

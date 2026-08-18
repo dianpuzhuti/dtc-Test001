@@ -1,0 +1,391 @@
+<div id="peptiderm-landing-root" class="w-full text-slate-900 bg-white">
+  
+  <!-- HERO SECTION -->
+  <section class="bg-gradient-to-b from-sky-50/60 via-white to-slate-50/50 py-8 sm:py-14 px-4 sm:px-6 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      
+      <!-- Left Column: Product Visuals & Quality Badges -->
+      <div class="lg:col-span-6 space-y-4">
+        <div class="relative aspect-4/3 rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-white p-6 flex items-center justify-center group">
+          <img
+            id="hero-main-image"
+            src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80"
+            alt="PeptiDerm 多肽细胞更新抗衰保湿霜"
+            class="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
+          >
+          <div class="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-black px-3.5 py-1.5 rounded-full border border-slate-700 shadow-md">
+            7重仿生信号肽 • 医用真空锁鲜
+          </div>
+          <div class="absolute bottom-4 right-4 bg-sky-600/90 backdrop-blur-md text-white text-[11px] font-black px-3 py-1 rounded-full shadow-md">
+            28天临床双盲实证
+          </div>
+        </div>
+
+        <!-- 4 Highlights Matrix -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+          <div class="bg-white border border-slate-200/90 rounded-2xl p-2.5 shadow-2xs">
+            <span class="text-sky-700 font-black block text-sm">-42.8%</span>
+            <span class="text-slate-500 text-[10px]">皱纹深度改善</span>
+          </div>
+          <div class="bg-white border border-slate-200/90 rounded-2xl p-2.5 shadow-2xs">
+            <span class="text-sky-700 font-black block text-sm">+68.4%</span>
+            <span class="text-slate-500 text-[10px]">真皮胶原密度</span>
+          </div>
+          <div class="bg-white border border-slate-200/90 rounded-2xl p-2.5 shadow-2xs">
+            <span class="text-sky-700 font-black block text-sm">99.8%</span>
+            <span class="text-slate-500 text-[10px]">敏感肌耐受度</span>
+          </div>
+          <div class="bg-white border border-slate-200/90 rounded-2xl p-2.5 shadow-2xs">
+            <span class="text-emerald-700 font-black block text-sm">3秒瞬吸</span>
+            <span class="text-slate-500 text-[10px]">哑光不闷闭口</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Conversion & Shopify Variant Selector -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200">
+            <span>CLINICAL BREAKTHROUGH • 细胞生物学重大突破</span>
+          </div>
+          
+          <h1 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-snug">
+            {{ section.settings.heading | default: '7重高纯仿生多肽 • 28天重构胶原年轻态' }}
+          </h1>
+
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            {{ section.settings.subheading | default: '突破传统抗衰与屏障耐受的对立矛盾。无需建立耐受，早晚皆宜，见证 99.8% 温和度与 -42.8% 皱纹深度改善。' }}
+          </p>
+        </div>
+
+        <!-- 3-Tier Interactive Variant Selector -->
+        <div class="space-y-3 bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-extrabold text-slate-900 uppercase tracking-wider">选择疗程规格 (Variants):</span>
+            <span class="text-emerald-700 font-bold">全系现货 • 24小时内直发</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2.5">
+            <!-- 30ml -->
+            <button
+              type="button"
+              onclick="selectThemeVariant('30ml', 29, 49, '尝鲜装 (20天量)')"
+              id="var-btn-30ml"
+              class="variant-btn p-3 rounded-2xl border text-left bg-white border-slate-200 hover:border-sky-400 transition-all cursor-pointer"
+            >
+              <div class="text-xs font-black text-slate-900">30ml 尝鲜装</div>
+              <div class="text-sm font-black text-sky-700 mt-1">$29 <span class="text-[10px] text-slate-400 line-through font-normal">$49</span></div>
+              <div class="text-[10px] text-slate-500 mt-0.5">省 $20</div>
+            </button>
+
+            <!-- 50ml Most Popular -->
+            <button
+              type="button"
+              onclick="selectThemeVariant('50ml', 49, 79, '经典装 (45天量 • 赠冷感微导勺)')"
+              id="var-btn-50ml"
+              class="variant-btn p-3 rounded-2xl border-2 text-left bg-sky-50/80 border-sky-600 shadow-sm transition-all cursor-pointer relative"
+            >
+              <div class="absolute -top-2.5 right-2 bg-amber-500 text-slate-950 text-[9px] font-black px-2 py-0.5 rounded-full">
+                82% 首选
+              </div>
+              <div class="text-xs font-black text-slate-900">50ml 经典抗老</div>
+              <div class="text-sm font-black text-sky-700 mt-1">$49 <span class="text-[10px] text-slate-400 line-through font-normal">$79</span></div>
+              <div class="text-[10px] text-emerald-700 font-bold mt-0.5">省 $30 + 赠微导勺</div>
+            </button>
+
+            <!-- 100ml Best Value -->
+            <button
+              type="button"
+              onclick="selectThemeVariant('100ml', 79, 129, '双倍疗程 (90天量 • 赠30ml便携装+微导勺)')"
+              id="var-btn-100ml"
+              class="variant-btn p-3 rounded-2xl border text-left bg-white border-slate-200 hover:border-sky-400 transition-all cursor-pointer relative"
+            >
+              <div class="text-xs font-black text-slate-900">100ml 院线装</div>
+              <div class="text-sm font-black text-sky-700 mt-1">$79 <span class="text-[10px] text-slate-400 line-through font-normal">$129</span></div>
+              <div class="text-[10px] text-slate-500 mt-0.5">省 $50 • 赠正装</div>
+            </button>
+          </div>
+
+          <!-- Dynamic Active Variant Summary Strip -->
+          <div class="pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs">
+            <div>
+              <span class="text-slate-500">已选规格: </span>
+              <strong id="selected-variant-label" class="text-slate-900 font-black">50ml 经典装 (45天量 • 赠冷感微导勺)</strong>
+            </div>
+            <div class="text-right">
+              <span id="selected-price-display" class="text-xl font-black text-sky-700">$49.00</span>
+              <span id="selected-compare-display" class="text-xs text-slate-400 line-through ml-1">$79.00</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Buy Action Button -->
+        <div class="space-y-3">
+          <button
+            type="button"
+            onclick="handleShopifyCheckout()"
+            class="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black text-base sm:text-lg py-4 px-6 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+          >
+            <span>立即订购 • 享30天全额退款保障</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+
+          <div class="flex items-center justify-center gap-4 text-xs text-slate-500 font-medium">
+            <span>✓ 全球免运费</span>
+            <span>•</span>
+            <span>✓ 30天不满意全额退款</span>
+            <span>•</span>
+            <span>✓ 256位加密安全支付</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIALECTICAL CONTRADICTION BUSTER (三大矛盾论破局) -->
+  <section class="bg-slate-900 text-white py-16 px-4 sm:px-6 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto space-y-10">
+      
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <div class="inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 text-xs font-black px-3.5 py-1 rounded-full border border-sky-500/30 uppercase">
+          DIALECTICAL BREAKTHROUGH • 矛盾论破局
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-white">破解传统抗衰三大对立矛盾</h2>
+        <p class="text-slate-400 text-sm sm:text-base">抗衰老不应是以牺牲皮肤屏障为代价的赌博。PeptiDerm 运用细胞生物学仿生信号肽，实现功效与温和的双重统一。</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Contradiction 1 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 space-y-4">
+          <div class="text-xs font-black text-sky-400 uppercase">矛盾一：强效抗衰 vs. 屏障耐受</div>
+          <h3 class="text-lg font-black text-white">99.8% 高耐受与 -42.8% 深层淡纹兼得</h3>
+          <div class="text-xs text-red-300 bg-red-950/40 p-3 rounded-xl border border-red-900/50">
+            <strong>传统痛点：</strong> 高浓 A醇/酸类剥脱导致红肿脱皮、刺痛翻车；普通植萃温和却毫无淡纹效果。
+          </div>
+          <div class="text-xs text-sky-200 bg-sky-950/60 p-3 rounded-xl border border-sky-800/60">
+            <strong>PeptiDerm破局：</strong> 7重仿生信号肽直接对齐细胞受体，内源性激活胶原生成，0 剥脱 0 泛红。
+          </div>
+        </div>
+
+        <!-- Contradiction 2 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 space-y-4">
+          <div class="text-xs font-black text-sky-400 uppercase">矛盾二：深度滋润 vs. 清爽哑光</div>
+          <h3 class="text-lg font-black text-white">3秒融雪化水，高保湿且哑光不闷痘</h3>
+          <div class="text-xs text-red-300 bg-red-950/40 p-3 rounded-xl border border-red-900/50">
+            <strong>传统痛点：</strong> 传统抗衰霜依靠厚重矿油封包，极易闷闭口致痘；清爽啫喱挥发后倒拔干。
+          </div>
+          <div class="text-xs text-sky-200 bg-sky-950/60 p-3 rounded-xl border border-sky-800/60">
+            <strong>PeptiDerm破局：</strong> 植物角鲨烷与液晶微囊仿生脂质，形成透气水脂膜，油皮夏日涂抹亦哑光清爽。
+          </div>
+        </div>
+
+        <!-- Contradiction 3 -->
+        <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 space-y-4">
+          <div class="text-xs font-black text-sky-400 uppercase">矛盾三：即时紧致 vs. 长期基底抗老</div>
+          <h3 class="text-lg font-black text-white">+68.4% 真皮胶原密度，停用不塌陷</h3>
+          <div class="text-xs text-red-300 bg-red-950/40 p-3 rounded-xl border border-red-900/50">
+            <strong>传统痛点：</strong> 普通紧致霜仅靠高分子成膜剂“物理拉皮”，洗脸即刻打回原形。
+          </div>
+          <div class="text-xs text-sky-200 bg-sky-950/60 p-3 rounded-xl border border-sky-800/60">
+            <strong>PeptiDerm破局：</strong> 蓝铜胜肽与 Matrixyl 3000 促生基底真皮胶原，停用依然维持嘭弹饱满。
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CLINICAL COMPARISON BENCHMARK TABLE -->
+  <section class="bg-white py-16 px-4 sm:px-6 border-b border-slate-200">
+    <div class="max-w-5xl mx-auto space-y-10">
+      
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 uppercase">
+          CLINICAL BENCHMARK • 临床硬核横评
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-slate-900">为什么生物多肽全面超越传统抗衰？</h2>
+        <p class="text-slate-600 text-sm">从作用机制、耐受安全性、肤感质地到停用反弹率，看 PeptiDerm 如何建立抗老新标准。</p>
+      </div>
+
+      <div class="overflow-x-auto rounded-3xl border border-slate-200 shadow-sm">
+        <table class="w-full text-left border-collapse min-w-[600px] text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200">
+              <th class="p-4 font-black text-slate-600">评估维度</th>
+              <th class="p-4 font-black text-white bg-slate-900">PeptiDerm™ 多肽霜 (本品)</th>
+              <th class="p-4 font-bold text-slate-700">传统高浓 A醇 (视黄醇)</th>
+              <th class="p-4 font-bold text-slate-500">普通保湿乳霜</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <tr>
+              <td class="p-4 font-bold text-slate-800">抗老核心机制</td>
+              <td class="p-4 font-black text-sky-700 bg-sky-50/50">7重仿生信号肽深层促胶原</td>
+              <td class="p-4 text-slate-600">表皮强行剥脱角质</td>
+              <td class="p-4 text-slate-400">仅停留在角质层吸水</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-slate-800">皮肤耐受性</td>
+              <td class="p-4 font-black text-sky-700 bg-sky-50/50">99.8% 极高耐受 (敏肌直涂)</td>
+              <td class="p-4 text-red-600 font-medium">需严苛建立耐受，易泛红脱皮</td>
+              <td class="p-4 text-slate-600">温和但无抗老功效</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-slate-800">日夜使用限制</td>
+              <td class="p-4 font-black text-sky-700 bg-sky-50/50">早晚皆可 (无光敏性/不反黑)</td>
+              <td class="p-4 text-red-600 font-medium">仅夜间避光使用 (强光敏)</td>
+              <td class="p-4 text-slate-600">早晚可用</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-slate-800">肤感与吸收</td>
+              <td class="p-4 font-black text-sky-700 bg-sky-50/50">3秒融雪哑光，透气不闷痘</td>
+              <td class="p-4 text-slate-600">易油腻拔干两极化</td>
+              <td class="p-4 text-slate-600">矿油厚重易致闭口</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-slate-800">包装锁鲜技术</td>
+              <td class="p-4 font-black text-sky-700 bg-sky-50/50">医用双层真空泵，0% 二次污染</td>
+              <td class="p-4 text-slate-600">易氧化失活泛黄</td>
+              <td class="p-4 text-slate-400">传统广口敞口罐</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3 VARIANT SHOPIFY CARDS -->
+  <section class="bg-slate-50 py-16 px-4 sm:px-6 border-b border-slate-200">
+    <div class="max-w-5xl mx-auto space-y-10">
+      
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 uppercase">
+          OFFICIAL SHOPIFY PRICING • 官方直降选购
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-slate-900">选择适合您的细胞逆龄疗程</h2>
+        <p class="text-slate-600 text-sm">临床皮肤科医生推荐按 28 天细胞代谢周期使用。多瓶或大容量装享更高折扣与专属赠品。</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- 30ml Card -->
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 flex flex-col justify-between space-y-6 shadow-2xs">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-black text-slate-900">30ml 尝鲜装</h3>
+              <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded">省 $20</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-3xl font-black text-slate-900">$29</span>
+              <span class="text-sm text-slate-400 line-through">$49</span>
+            </div>
+            <p class="text-xs text-slate-500">20天初体验 • 感受温和无刺激质地与初级水润饱满。</p>
+            <ul class="text-xs text-slate-600 space-y-1.5 pt-3 border-t border-slate-100">
+              <li>✓ 30ml 医用真空泵装</li>
+              <li>✓ 全球免运费直发</li>
+              <li>✓ 30天无理由退款</li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            onclick="selectThemeVariant('30ml', 29, 49, '尝鲜装'); handleShopifyCheckout();"
+            class="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold py-3.5 rounded-xl text-xs transition-all cursor-pointer"
+          >
+            选购 30ml ($29)
+          </button>
+        </div>
+
+        <!-- 50ml Card (Popular) -->
+        <div class="bg-gradient-to-b from-sky-50 to-white rounded-3xl border-2 border-sky-600 p-6 flex flex-col justify-between space-y-6 shadow-xl relative md:-translate-y-2">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs font-black px-3.5 py-1 rounded-full shadow-xs">
+            🔥 82% 用户的首选
+          </div>
+          <div class="space-y-3 pt-2">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-black text-slate-900">50ml 经典装</h3>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">省 $30 (38% OFF)</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-black text-slate-900">$49</span>
+              <span class="text-sm text-slate-400 line-through">$79</span>
+            </div>
+            <p class="text-xs text-slate-600">45天完整抗老周期 • 显著淡化眼角干纹与法令纹。</p>
+            <ul class="text-xs text-slate-700 space-y-1.5 pt-3 border-t border-slate-200 font-medium">
+              <li class="text-sky-800 font-bold">★ 赠医用冷感锌合金微导勺 ($19)</li>
+              <li>✓ 50ml 双层真空按压锁鲜瓶</li>
+              <li>✓ 28天细胞代谢打卡卡片</li>
+              <li>✓ 全球免运费直发</li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            onclick="selectThemeVariant('50ml', 49, 79, '经典装'); handleShopifyCheckout();"
+            class="w-full bg-sky-600 hover:bg-sky-500 text-white font-black py-4 rounded-xl text-sm transition-all shadow-md cursor-pointer active:scale-98"
+          >
+            立即选购 50ml ($49)
+          </button>
+        </div>
+
+        <!-- 100ml Card -->
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 flex flex-col justify-between space-y-6 shadow-2xs">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-black text-slate-900">100ml 院线装</h3>
+              <span class="text-xs font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded">省 $50 (39% OFF)</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-3xl font-black text-slate-900">$79</span>
+              <span class="text-sm text-slate-400 line-through">$129</span>
+            </div>
+            <p class="text-xs text-slate-500">90天双倍深度疗程 • 巩固真皮胶原网，提拉下颌线。</p>
+            <ul class="text-xs text-slate-600 space-y-1.5 pt-3 border-t border-slate-100">
+              <li class="text-sky-800 font-bold">★ 赠 30ml 便携装 + 冷感微导勺</li>
+              <li>✓ 100ml 大容量院线装</li>
+              <li>✓ 终身 VIP 会员 88 折特权</li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            onclick="selectThemeVariant('100ml', 79, 129, '院线装'); handleShopifyCheckout();"
+            class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl text-xs transition-all cursor-pointer"
+          >
+            选购 100ml ($79)
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "PeptiDerm 多肽落地页",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "主标题",
+      "default": "7重高纯仿生多肽 • 28天重构胶原年轻态"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "副标题",
+      "default": "突破传统抗衰与屏障耐受的对立矛盾。无需建立耐受，早晚皆宜，见证 99.8% 温和度与 -42.8% 皱纹深度改善。"
+    }
+  ],
+  "presets": [
+    {
+      "name": "默认 PeptiDerm 落地页"
+    }
+  ]
+}
+{% endschema %}

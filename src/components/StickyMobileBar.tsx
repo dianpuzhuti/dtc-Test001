@@ -1,55 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { ShoppingBag, ArrowRight } from 'lucide-react';
-import { PRODUCT_INFO } from '../data/productData';
+import React from 'react';
+import { ShoppingBag, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ProductVariant } from '../types';
 
 interface StickyMobileBarProps {
+  selectedVariant: ProductVariant;
   onCtaClick: () => void;
 }
 
-export const StickyMobileBar: React.FC<StickyMobileBarProps> = ({ onCtaClick }) => {
-  const [showBar, setShowBar] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Show sticky bar after scrolling past 350px
-      if (window.scrollY > 350) {
-        setShowBar(true);
-      } else {
-        setShowBar(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  if (!showBar) return null;
-
+export const StickyMobileBar: React.FC<StickyMobileBarProps> = ({
+  selectedVariant,
+  onCtaClick,
+}) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-zinc-200/90 shadow-2xl p-3 sm:hidden animate-in slide-in-from-bottom duration-200">
-      <div className="max-w-md mx-auto flex items-center justify-between gap-3">
+    <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 p-3 shadow-2xl">
+      <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
         
-        {/* Price & Name */}
+        {/* Left: Price and Variant */}
         <div className="flex flex-col">
-          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Ninja DualZone™</span>
           <div className="flex items-baseline gap-1.5">
-            <span className="text-lg font-black text-zinc-900 tracking-tight">
-              ${PRODUCT_INFO.sellingPrice.toFixed(0)}
+            <span className="text-xl font-black text-white">
+              ${selectedVariant.sellingPrice}
             </span>
-            <span className="text-xs text-zinc-400 line-through">
-              ${PRODUCT_INFO.compareAtPrice.toFixed(0)}
+            <span className="text-xs text-slate-400 line-through">
+              ${selectedVariant.compareAtPrice}
             </span>
           </div>
+          <span className="text-[10px] text-sky-400 font-bold">
+            已选 {selectedVariant.size} (省 ${selectedVariant.savings})
+          </span>
         </div>
 
-        {/* Action Button */}
+        {/* Right: Buy Button */}
         <button
           onClick={onCtaClick}
-          className="flex-1 bg-zinc-900 active:bg-black text-white font-extrabold text-xs py-2.5 px-4 rounded-xl shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+          className="flex-1 bg-gradient-to-r from-sky-400 to-sky-500 active:scale-98 text-slate-950 font-black text-sm py-3 px-4 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition-all cursor-pointer"
         >
-          <ShoppingBag className="w-3.5 h-3.5" />
-          <span>GET IT FOR ${PRODUCT_INFO.sellingPrice.toFixed(0)}</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <span>立即选购</span>
+          <ArrowRight className="w-4 h-4 text-slate-950" />
         </button>
 
       </div>

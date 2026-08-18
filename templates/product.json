@@ -1,0 +1,12 @@
+{
+  "name": "Default Product",
+  "sections": {
+    "main_product": {
+      "type": "peptiderm-landing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main_product"
+  ]
+}

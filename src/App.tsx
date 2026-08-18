@@ -2,98 +2,136 @@ import React, { useState } from 'react';
 import { TopOfferBar } from './components/TopOfferBar';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
-import { QuickBenefits } from './components/QuickBenefits';
-import { ProblemSolution } from './components/ProblemSolution';
-import { DualBasketFeature } from './components/DualBasketFeature';
-import { RealFoodResults } from './components/RealFoodResults';
-import { FamilyWeeknight } from './components/FamilyWeeknight';
-import { MealCombinations } from './components/MealCombinations';
-import { SixInOneCapability } from './components/SixInOneCapability';
-import { EasyRoutineSection } from './components/EasyRoutineSection';
+import { DialecticalBuster } from './components/DialecticalBuster';
+import { ClinicalScienceSection } from './components/ClinicalScienceSection';
+import { ActiveIngredientsSection } from './components/ActiveIngredientsSection';
+import { ComparisonTable } from './components/ComparisonTable';
+import { RoutineGuideSection } from './components/RoutineGuideSection';
 import { WhatsInBoxSection } from './components/WhatsInBoxSection';
+import { ReviewsSection } from './components/ReviewsSection';
 import { ValueSection } from './components/ValueSection';
 import { FAQSection } from './components/FAQSection';
 import { FinalCTA } from './components/FinalCTA';
 import { StickyMobileBar } from './components/StickyMobileBar';
 import { PrototypeModal } from './components/PrototypeModal';
+import { PRODUCT_VARIANTS, PRODUCT_INFO } from './data/productData';
+import { ProductVariant } from './types';
 
 export default function App() {
+  // Default to 50ml Most Popular variant ($49)
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(
+    PRODUCT_VARIANTS.find((v) => v.isPopular) || PRODUCT_VARIANTS[1]
+  );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleCtaClick = () => {
     setIsModalOpen(true);
   };
 
+  const handleSelectVariant = (variant: ProductVariant) => {
+    setSelectedVariant(variant);
+  };
+
   return (
-    <div className="min-h-screen bg-white text-zinc-900 font-sans antialiased selection:bg-amber-200 selection:text-amber-950">
+    <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-sky-200 selection:text-sky-950">
       
-      {/* 1. TOP OFFER BAR */}
+      {/* 1. TOP CLINICAL ANNOUNCEMENT BAR */}
       <TopOfferBar />
 
-      {/* Header Navigation */}
-      <Header onCtaClick={handleCtaClick} />
+      {/* 2. MEDICAL LAB HEADER */}
+      <Header onCtaClick={handleCtaClick} cartCount={1} />
 
-      <main className="pb-16 sm:pb-0">
-        {/* 2. HERO — WEEKNIGHT CONVENIENCE */}
-        <HeroSection onCtaClick={handleCtaClick} />
+      <main className="pb-20 sm:pb-0">
+        {/* 3. HERO SECTION — CLINICAL MULTI-PEPTIDE CONTRADICTION BUSTER */}
+        <HeroSection
+          selectedVariant={selectedVariant}
+          onSelectVariant={handleSelectVariant}
+          onCtaClick={handleCtaClick}
+        />
 
-        {/* 3. QUICK BENEFITS */}
-        <QuickBenefits />
+        {/* 4. DIALECTICAL CONTRADICTION BUSTER (矛盾论核心破局) */}
+        <DialecticalBuster onCtaClick={handleCtaClick} />
 
-        {/* 4. PROBLEM → SOLUTION */}
-        <ProblemSolution onCtaClick={handleCtaClick} />
+        {/* 5. 28-DAY DOUBLE-BLIND CLINICAL DATA (双盲临床数据背书) */}
+        <ClinicalScienceSection />
 
-        {/* 5. DUALZONE FEATURE */}
-        <DualBasketFeature />
+        {/* 6. 7 BIO-MIMETIC PEPTIDES COMPLEX (7重仿生分子多肽) */}
+        <ActiveIngredientsSection />
 
-        {/* 6. REAL FOOD RESULTS */}
-        <RealFoodResults />
+        {/* 7. DIALECTICAL COMPARISON TABLE (矛盾论三方硬核横评表) */}
+        <ComparisonTable onCtaClick={handleCtaClick} />
 
-        {/* 7. REAL-WORLD ROUTINE */}
-        <FamilyWeeknight />
+        {/* 8. CLINICAL MORNING & NIGHT ROUTINE (晨晚医学护肤仪式) */}
+        <RoutineGuideSection />
 
-        {/* 8. MEAL COMBINATIONS */}
-        <MealCombinations />
-
-        {/* 9. 6-IN-1 FUNCTIONALITY */}
-        <SixInOneCapability />
-
-        {/* 10. EASY CLEANUP / PRACTICAL USE */}
-        <EasyRoutineSection />
-
-        {/* 11. WHAT'S INCLUDED */}
+        {/* 9. MEDICAL UNBOXING & ACCESSORIES (开箱与配件清单) */}
         <WhatsInBoxSection />
 
-        {/* 12. VALUE / OFFER SECTION */}
-        <ValueSection onCtaClick={handleCtaClick} />
+        {/* 10. REAL CLINICAL PATIENT & USER FEEDBACK (真实口碑与医生手记) */}
+        <ReviewsSection />
 
-        {/* 13. FAQ */}
+        {/* 11. SHOPIFY 1:1 VARIANT MATRIX (30ml $29 / 50ml $49 / 100ml $79 选购矩阵) */}
+        <ValueSection
+          selectedVariant={selectedVariant}
+          onSelectVariant={handleSelectVariant}
+          onCtaClick={handleCtaClick}
+        />
+
+        {/* 12. CLINICAL FAQ (皮肤科医生疑虑解答) */}
         <FAQSection />
 
-        {/* 14. FINAL CTA */}
-        <FinalCTA onCtaClick={handleCtaClick} />
+        {/* 13. FINAL CONVERSION CARD (收尾医学信任转化) */}
+        <FinalCTA
+          selectedVariant={selectedVariant}
+          onCtaClick={handleCtaClick}
+        />
       </main>
 
-      {/* Footer Branding & Shopify Integration Disclaimer */}
-      <footer className="bg-zinc-950 text-zinc-400 py-10 px-4 text-center border-t border-zinc-800 text-xs space-y-3">
-        <div className="max-w-4xl mx-auto space-y-2">
-          <p className="font-extrabold text-white text-sm">
-            NINJA Foodi® DualZone™ Air Fryer (DZ201) • 8-QT Grey Edition
+      {/* Footer Branding & Shopify Clinical Integration Disclaimer */}
+      <footer className="bg-slate-950 text-slate-400 py-12 px-4 text-center border-t border-slate-800 text-xs space-y-4">
+        <div className="max-w-4xl mx-auto space-y-3">
+          <div className="flex items-center justify-center gap-2">
+            <span className="font-black text-white text-base">
+              PeptiDerm™ Clinical Dermatology Laboratories
+            </span>
+            <span className="bg-sky-900 text-sky-300 text-[10px] font-black px-2 py-0.5 rounded">
+              ISO 22716 / GMP 认证
+            </span>
+          </div>
+
+          <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed text-xs">
+            多肽细胞更新抗衰保湿霜 (Cellular Renewal Multi-Peptide Cream) • 配方专研 7 重仿生信号胜肽。本页面为适配 Shopify Shrine / Dawn 高端独立站模板设计，1:1 无缝对接 Shopify 后台多变体 SKU 价格与原生结账抽屉。
           </p>
-          <p className="text-zinc-500 max-w-xl mx-auto leading-relaxed">
-            High-converting DTC landing page template designed for Shopify Shrine theme deployment. Product forms, native cart drawers, and Shopify Checkout integrate via standard Shopify liquid themes.
-          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 text-slate-500 text-[11px] pt-2">
+            <span>GMP 十万级净化实验室制造</span>
+            <span>•</span>
+            <span>瑞士 SGS 无刺激检测通过</span>
+            <span>•</span>
+            <span>0% 动物实验 (Cruelty-Free)</span>
+            <span>•</span>
+            <span>256-bit SSL 安全支付网关</span>
+          </div>
         </div>
-        <p className="text-zinc-600 text-[10px] pt-4 border-t border-zinc-900">
-          © {new Date().getFullYear()} Ninja DZ201 Landing Page Template.
+
+        <p className="text-slate-600 text-[10px] pt-4 border-t border-slate-900">
+          © {new Date().getFullYear()} PeptiDerm™ Dermatology Inc. 保留所有权利。
         </p>
       </footer>
 
-      {/* 15. MOBILE STICKY CTA BAR */}
-      <StickyMobileBar onCtaClick={handleCtaClick} />
+      {/* 14. MOBILE STICKY CTA BAR */}
+      <StickyMobileBar
+        selectedVariant={selectedVariant}
+        onCtaClick={handleCtaClick}
+      />
 
-      {/* Prototype Action Modal */}
-      <PrototypeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {/* 15. SHOPIFY NATIVE CART DRAWER & INSTANT CHECKOUT MODAL */}
+      <PrototypeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        selectedVariant={selectedVariant}
+        onSelectVariant={handleSelectVariant}
+      />
 
     </div>
   );

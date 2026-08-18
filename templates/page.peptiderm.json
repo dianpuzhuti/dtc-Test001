@@ -1,0 +1,12 @@
+{
+  "name": "PeptiDerm Landing Page",
+  "sections": {
+    "peptiderm_content": {
+      "type": "peptiderm-landing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "peptiderm_content"
+  ]
+}
