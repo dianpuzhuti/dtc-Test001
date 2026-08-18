@@ -1,0 +1,6 @@
+{
+  "name": "Ninja Foodi DualZone Air Fryer",
+  "description": "Mobile-first DTC landing page prototype for Ninja DZ201 Foodi 8-Quart 6-in-1 DualZone Air Fryer",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
