@@ -47,6 +47,111 @@
 
 <div id="peptiderm-shopify-root" class="w-full text-slate-900 bg-white font-sans antialiased selection:bg-sky-200 selection:text-sky-950">
   
+  {% assign brand_title = section.settings.brand_name | default: current_product.vendor | default: shop.name | default: 'PeptiDerm' %}
+  {% assign brand_sub = section.settings.brand_tagline | default: 'Clinical Dermatology Laboratories' %}
+  {% assign promo_badge = section.settings.announcement_badge | default: 'FLASH SPECIAL' %}
+  {% assign promo_text = section.settings.announcement_text | default: 'UP TO 41% OFF • FREE CRYO SPATULA WITH 50ML/100ML • WORLDWIDE EXPRESS SHIPPING' %}
+  {% assign left_guarantee = section.settings.top_left_text | default: 'GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED' %}
+  {% assign right_guarantee = section.settings.top_right_text | default: '30-Day Money-Back Guarantee' %}
+
+  <!-- ========================================== -->
+  <!-- 0A. DYNAMIC TOP ANNOUNCEMENT BAR (NO HARDCODING, NO WRAPPING BUGS) -->
+  <!-- ========================================== -->
+  <div class="bg-gradient-to-r from-slate-950 via-sky-950 to-slate-950 text-white text-xs py-2 px-3 sm:px-4 border-b border-sky-900/60 sticky top-0 z-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
+      
+      <!-- Left Clinical Guarantee -->
+      {% if left_guarantee != blank %}
+        <div class="hidden xl:flex items-center gap-2 text-sky-300 font-bold text-[11px] shrink-0 whitespace-nowrap">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>{{ left_guarantee }}</span>
+        </div>
+      {% endif %}
+
+      <!-- Center Dynamic Announcement (Single line guaranteed, never wraps into 8 lines) -->
+      <div class="flex-1 flex items-center justify-center gap-2 min-w-0 overflow-hidden">
+        {% if promo_badge != blank %}
+          <span class="bg-sky-500 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded shrink-0 shadow-2xs">
+            {{ promo_badge }}
+          </span>
+        {% endif %}
+        <span class="font-extrabold text-[11px] sm:text-xs text-white tracking-wide truncate">
+          {{ promo_text }}
+        </span>
+      </div>
+
+      <!-- Right Guarantee -->
+      {% if right_guarantee != blank %}
+        <div class="hidden lg:flex items-center gap-1.5 text-slate-300 text-[11px] font-semibold shrink-0 whitespace-nowrap">
+          <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span>{{ right_guarantee }}</span>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 0B. DYNAMIC BRAND & LAB HEADER -->
+  <!-- ========================================== -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-[33px] z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-18 flex items-center justify-between gap-4">
+      
+      <!-- Dynamic Brand Identity -->
+      <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+        {% if section.settings.logo_image != blank %}
+          <img src="{{ section.settings.logo_image | image_url: width: 100 }}" alt="{{ brand_title }}" class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl object-contain">
+        {% else %}
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-sky-600 to-slate-900 flex items-center justify-center text-white font-black text-base sm:text-xl shadow-md shrink-0">
+            {{ brand_title | slice: 0, 1 | upcase }}
+          </div>
+        {% endif %}
+        <div class="min-w-0">
+          <div class="flex items-center gap-1">
+            <span class="font-black text-base sm:text-xl text-slate-900 tracking-tight truncate">
+              {{ brand_title }}
+            </span>
+            <span class="text-[10px] sm:text-xs text-sky-600 font-extrabold">™</span>
+          </div>
+          {% if brand_sub != blank %}
+            <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-500 tracking-wider block -mt-0.5 truncate max-w-[180px] sm:max-w-xs">
+              {{ brand_sub }}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Dynamic Feature Badges -->
+      <div class="hidden xl:flex items-center gap-5 text-xs text-slate-600 font-semibold whitespace-nowrap">
+        <div class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-sky-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span>{{ section.settings.feature_1_text | default: '7 Bio-Mimetic Signal Peptides' }}</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-sky-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          <span>{{ section.settings.feature_2_text | default: '28-Day Clinical Trial Proof' }}</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span>{{ section.settings.feature_3_text | default: '99.8% Tolerance Rate' }}</span>
+        </div>
+      </div>
+
+      <!-- Right Header Action Button -->
+      <div class="flex items-center gap-2 shrink-0">
+        <button
+          type="button"
+          onclick="openShopifyCartDrawer()"
+          class="bg-slate-900 hover:bg-sky-950 text-white font-black text-xs sm:text-sm px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer active:scale-98 whitespace-nowrap"
+        >
+          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span>{{ section.settings.header_cta_text | default: 'Order Now' }}</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
   <!-- ========================================== -->
   <!-- 1. HERO SECTION & VARIANT SELECTOR -->
   <!-- ========================================== -->
@@ -238,7 +343,99 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- 2. DIALECTICAL CONTRADICTION BUSTER -->
+  <!-- 2. INTERACTIVE 28-DAY VISUAL COMPARISON -->
+  <!-- ========================================== -->
+  <section class="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto space-y-8 sm:space-y-10">
+      
+      <div class="text-center space-y-2.5 max-w-2xl mx-auto">
+        <div class="inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 text-xs font-black px-3.5 py-1 rounded-full border border-sky-500/30 uppercase tracking-wider">
+          <span>28-DAY OPTICAL TOPOGRAPHY PROOF</span>
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-white">Visual Proof: Before & After 28-Day Clinical Trial</h2>
+        <p class="text-slate-400 text-xs sm:text-sm">Drag the interactive slider below to inspect dermatological skin topography changes.</p>
+      </div>
+
+      <!-- Interactive Split Slider Container -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-8 bg-slate-950 rounded-3xl p-3 sm:p-4 border border-slate-800 shadow-2xl relative overflow-hidden">
+          <div class="relative aspect-4/3 sm:aspect-16/10 rounded-2xl overflow-hidden select-none touch-none" id="liquid-slider-container">
+            <img
+              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80"
+              alt="After 28 Days Clinical Treatment"
+              class="absolute inset-0 w-full h-full object-cover"
+            >
+            <div class="absolute top-3 right-3 bg-sky-600/90 backdrop-blur-md text-white text-[11px] font-black px-3 py-1 rounded-full shadow-md z-10">
+              DAY 28 • PEPTIDERM
+            </div>
+
+            <div id="liquid-before-layer" class="absolute inset-0 overflow-hidden" style="width: 50%;">
+              <img
+                src="https://images.unsplash.com/photo-1512290900672-1f5511b512c4?auto=format&fit=crop&w=800&q=80"
+                alt="Day 0 Baseline Skin"
+                class="absolute inset-0 w-full h-full object-cover max-w-none"
+                style="width: 100%; height: 100%;"
+              >
+              <div class="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-md text-slate-200 text-[11px] font-black px-3 py-1 rounded-full shadow-md z-10">
+                DAY 0 • BASELINE
+              </div>
+            </div>
+
+            <div id="liquid-slider-bar" class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 shadow-2xl" style="left: 50%;">
+              <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white text-slate-900 rounded-full flex items-center justify-center shadow-2xl border-2 border-sky-600 font-black text-xs">
+                ⇄
+              </div>
+            </div>
+
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              oninput="document.getElementById('liquid-before-layer').style.width = this.value + '%'; document.getElementById('liquid-slider-bar').style.left = this.value + '%';"
+              class="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30"
+              aria-label="Before after comparison slider"
+            >
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] text-slate-400 pt-3 px-2">
+            <span>⇄ Drag slider left / right to compare</span>
+            <span class="text-sky-400 font-semibold">German PRIMOS 3D Topography</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 space-y-4">
+          <div class="bg-slate-950/80 border border-slate-800 rounded-3xl p-5 sm:p-6 space-y-4">
+            <span class="text-[10px] font-black uppercase tracking-wider text-sky-400">Day 28 Clinical Scan</span>
+            <h3 class="font-extrabold text-white text-lg sm:text-xl">Nasolabial Smile Fold Depth</h3>
+            <div class="bg-sky-950/60 border border-sky-800/80 rounded-2xl p-4 flex items-baseline justify-between">
+              <div>
+                <span class="text-3xl sm:text-4xl font-black text-sky-400">-42.8%</span>
+                <span class="text-xs text-slate-300 block mt-0.5 font-medium">Statistically Significant</span>
+              </div>
+              <span class="text-xs text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                p &lt; 0.001
+              </span>
+            </div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+              PRIMOS 3D Optical scan proves -42.8% volume reduction with zero barrier redness.
+            </p>
+            <button
+              type="button"
+              onclick="openShopifyCartDrawer()"
+              class="w-full mt-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black py-3 rounded-xl text-xs sm:text-sm shadow-lg transition-all cursor-pointer"
+            >
+              Experience 28-Day Cellular Lift ($29+) →
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 3. DIALECTICAL CONTRADICTION BUSTER -->
   <!-- ========================================== -->
   <section class="bg-slate-900 text-white py-16 px-4 sm:px-6 border-b border-slate-800">
     <div class="max-w-6xl mx-auto space-y-12">
@@ -1092,6 +1289,88 @@
 {
   "name": "PeptiDerm Landing Page",
   "settings": [
+    {
+      "type": "header",
+      "content": "Brand & Header Configuration"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "PeptiDerm",
+      "info": "Defaults to Shopify product vendor or store name if blank"
+    },
+    {
+      "type": "text",
+      "id": "brand_tagline",
+      "label": "Brand Tagline",
+      "default": "Clinical Dermatology Laboratories"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Custom Brand Logo"
+    },
+    {
+      "type": "header",
+      "content": "Top Announcement Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_badge",
+      "label": "Announcement Badge",
+      "default": "FLASH SPECIAL"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "UP TO 41% OFF • FREE CRYO SPATULA WITH 50ML/100ML • WORLDWIDE EXPRESS SHIPPING"
+    },
+    {
+      "type": "text",
+      "id": "top_left_text",
+      "label": "Top Left Guarantee",
+      "default": "GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED"
+    },
+    {
+      "type": "text",
+      "id": "top_right_text",
+      "label": "Top Right Guarantee",
+      "default": "30-Day Money-Back Guarantee"
+    },
+    {
+      "type": "header",
+      "content": "Header Feature Badges & CTA"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_text",
+      "label": "Feature Badge 1",
+      "default": "7 Bio-Mimetic Signal Peptides"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_text",
+      "label": "Feature Badge 2",
+      "default": "28-Day Clinical Trial Proof"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_text",
+      "label": "Feature Badge 3",
+      "default": "99.8% Tolerance Rate"
+    },
+    {
+      "type": "text",
+      "id": "header_cta_text",
+      "label": "Header CTA Text",
+      "default": "Order Now"
+    },
+    {
+      "type": "header",
+      "content": "Hero & Product Assignment"
+    },
     {
       "type": "text",
       "id": "heading",

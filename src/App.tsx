@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TopOfferBar } from './components/TopOfferBar';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
+import { InteractiveSkinComparison } from './components/InteractiveSkinComparison';
 import { DialecticalBuster } from './components/DialecticalBuster';
 import { ClinicalScienceSection } from './components/ClinicalScienceSection';
 import { ActiveIngredientsSection } from './components/ActiveIngredientsSection';
@@ -35,11 +36,23 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-sky-200 selection:text-sky-950">
       
-      {/* 1. TOP CLINICAL ANNOUNCEMENT BAR */}
-      <TopOfferBar />
+      {/* 1. TOP DYNAMIC ANNOUNCEMENT BAR (NO HARDCODING, NO WRAPPING BUGS) */}
+      <TopOfferBar
+        badge="FLASH SPECIAL"
+        offerText={`LIMITED TIME: UP TO ${selectedVariant.savingsPercent}% OFF • FREE CRYO SPATULA WITH 50ML/100ML • WORLDWIDE EXPRESS SHIPPING`}
+        leftGuarantee="GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED"
+        rightGuarantee="30-Day Money-Back Guarantee"
+      />
 
-      {/* 2. MEDICAL LAB HEADER */}
-      <Header onCtaClick={handleCtaClick} cartCount={1} />
+      {/* 2. DYNAMIC BRAND & LAB HEADER */}
+      <Header
+        brandName={PRODUCT_INFO.brand.replace('™ Laboratories', '')}
+        tagline="Clinical Dermatology Laboratories"
+        startingPrice={PRODUCT_VARIANTS[0].sellingPrice}
+        ctaText={`Order Now (From $${PRODUCT_VARIANTS[0].sellingPrice})`}
+        onCtaClick={handleCtaClick}
+        cartCount={1}
+      />
 
       <main className="pb-20 sm:pb-0">
         {/* 3. HERO SECTION — CLINICAL MULTI-PEPTIDE CONTRADICTION BUSTER */}
@@ -49,7 +62,10 @@ export default function App() {
           onCtaClick={handleCtaClick}
         />
 
-        {/* 4. DIALECTICAL CONTRADICTION BUSTER */}
+        {/* 4. VISUAL BEFORE / AFTER 28-DAY CLINICAL SLIDER */}
+        <InteractiveSkinComparison onCtaClick={handleCtaClick} />
+
+        {/* 5. DIALECTICAL CONTRADICTION BUSTER */}
         <DialecticalBuster onCtaClick={handleCtaClick} />
 
         {/* 5. 28-DAY DOUBLE-BLIND CLINICAL DATA */}
