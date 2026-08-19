@@ -46,15 +46,18 @@
   </head>
 
   <body class="bg-white text-slate-900 font-sans antialiased min-h-screen flex flex-col">
-    {% section 'top-announcement' %}
-    {% section 'header' %}
+    {%- unless template.suffix contains 'landing-' or template.name == 'page' and template.suffix contains 'landing' -%}
+      {% section 'top-announcement' %}
+      {% section 'header' %}
+    {%- endunless -%}
 
     <main id="MainContent" class="flex-grow focus:none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
-    {% section 'footer' %}
-
-    {{ 'peptiderm-theme.js' | asset_url | script_tag }}
+    {%- unless template.suffix contains 'landing-' or template.name == 'page' and template.suffix contains 'landing' -%}
+      {% section 'footer' %}
+      {{ 'peptiderm-theme.js' | asset_url | script_tag }}
+    {%- endunless -%}
   </body>
 </html>
