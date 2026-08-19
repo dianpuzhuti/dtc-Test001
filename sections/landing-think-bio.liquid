@@ -1,0 +1,18 @@
+{{ 'landing-think-bio.css' | asset_url | stylesheet_tag }}
+
+<div id="root" class="think-bio-dtc-wrapper"></div>
+
+<script src="{{ 'landing-think-bio.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Landing - Think Bio",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Landing - Think Bio",
+      "category": "Custom Landings"
+    }
+  ]
+}
+{% endschema %}
