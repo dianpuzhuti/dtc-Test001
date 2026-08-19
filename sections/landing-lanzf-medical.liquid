@@ -1,0 +1,18 @@
+{{ 'landing-lanzf-medical.css' | asset_url | stylesheet_tag }}
+
+<div id="root" class="lanzf-medical-dtc-wrapper"></div>
+
+<script src="{{ 'landing-lanzf-medical.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Landing - Lanzf Medical",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Landing - Lanzf Medical",
+      "category": "Custom Landings"
+    }
+  ]
+}
+{% endschema %}
