@@ -1,0 +1,52 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Passer au contenu",
+      "close": "Fermer",
+      "cart_drawer": "Tiroir du panier",
+      "language_selector": "Choisir la langue"
+    },
+    "meta": {
+      "tags": "Mots-clés",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "404 Page Non Trouvée",
+      "subtext": "La page que vous avez demandée n'existe pas.",
+      "link": "Continuer vos achats"
+    }
+  },
+  "sections": {
+    "header": {
+      "brand": "PeptiDerm",
+      "tagline": "Laboratoires de Dermatologie Clinique",
+      "cart_count": "Panier ({{ count }})",
+      "order_now": "Commander",
+      "menu": "Menu"
+    },
+    "announcement": {
+      "flash_badge": "OFFRE SPÉCIALE",
+      "offer_text": "JUSQU'À -41% • SPATULE CRYO OFFERTE AVEC 50ML/100ML • LIVRAISON EXPRESS MONDIALE",
+      "guarantee": "Garantie Satisfait ou Remboursé 30 Jours"
+    },
+    "cart": {
+      "title": "Panier Instantané & Paiement Sécurisé",
+      "empty": "Votre panier est actuellement vide",
+      "checkout": "Procéder au Paiement Sécurisé",
+      "subtotal": "Sous-total",
+      "discount": "Remise",
+      "savings": "Vous économisez",
+      "shipping_note": "Livraison suivie offerte dans le monde entier",
+      "guarantee_note": "Garantie Remboursement 30 Jours • Envoi Médical Crypté"
+    },
+    "product": {
+      "add_to_cart": "Ajouter au Panier",
+      "buy_now": "Commander Maintenant",
+      "claim_offer": "Profiter de l'Offre Clinique",
+      "sold_out": "Épuisé",
+      "regular_price": "Prix habituel",
+      "sale_price": "Prix réduit",
+      "select_variant": "Sélectionnez Votre Cure Clinique"
+    }
+  }
+}

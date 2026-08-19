@@ -11,8 +11,9 @@ import {
   Plus,
   Minus
 } from 'lucide-react';
-import { PRODUCT_INFO, PRODUCT_VARIANTS } from '../data/productData';
+import { PRODUCT_VARIANTS } from '../data/productData';
 import { ProductVariant } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 interface PrototypeModalProps {
   isOpen: boolean;
@@ -28,10 +29,10 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
   onSelectVariant,
 }) => {
   const [quantity, setQuantity] = useState<number>(1);
-  const [promoCode, setPromoCode] = useState<string>('PEPTIDE10');
-  const [discountApplied, setDiscountApplied] = useState<boolean>(true);
+  const [discountApplied] = useState<boolean>(true);
   const [isCheckingOut, setIsCheckingOut] = useState<boolean>(false);
   const [checkoutComplete, setCheckoutComplete] = useState<boolean>(false);
+  const { t, formatPrice } = useLanguage();
 
   if (!isOpen) return null;
 
@@ -47,6 +48,14 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
     }, 1200);
   };
 
+  const getVariantTranslation = (variantId: string) => {
+    if (variantId === 'variant-30ml') return t.variants.starter;
+    if (variantId === 'variant-50ml') return t.variants.core;
+    return t.variants.course;
+  };
+
+  const currentVariantT = getVariantTranslation(selectedVariant.id);
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
       
@@ -59,8 +68,8 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
               <ShoppingBag className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-black text-sm sm:text-base">Shopify Instant Cart & Checkout</h3>
-              <p className="text-[10px] text-sky-300">PeptiDerm™ Direct Medical Dispatch</p>
+              <h3 className="font-black text-sm sm:text-base">{t.modal.title}</h3>
+              <p className="text-[10px] text-sky-300">{t.modal.subtitle}</p>
             </div>
           </div>
 
@@ -81,24 +90,24 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <div className="space-y-1">
-                <h3 className="text-xl font-black text-slate-900">Order Confirmed Successfully!</h3>
+                <h3 className="text-xl font-black text-slate-900">{t.modal.orderConfirmed}</h3>
                 <p className="text-xs text-slate-500">
-                  Order ID: #PD-{Math.floor(100000 + Math.random() * 900000)} • Tracked Express Dispatch in 24h
+                  {t.modal.orderId}: #PD-{Math.floor(100000 + Math.random() * 900000)} • {t.modal.dispatchNotice}
                 </p>
               </div>
 
               <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-left space-y-2 text-xs">
                 <div className="flex justify-between font-bold text-slate-800">
-                  <span>Selected Course:</span>
-                  <span>{selectedVariant.name} x {quantity}</span>
+                  <span>{t.modal.course}:</span>
+                  <span>{currentVariantT.name} x {quantity}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
-                  <span>Final Total:</span>
-                  <span className="font-extrabold text-sky-700">${finalTotal.toFixed(2)}</span>
+                  <span>{t.modal.total}:</span>
+                  <span className="font-extrabold text-sky-700">{formatPrice(finalTotal)}</span>
                 </div>
                 <div className="flex justify-between text-emerald-700 font-semibold pt-1 border-t border-slate-200">
-                  <span>Complimentary Gifts:</span>
-                  <span>Cryo Sculpting Spatula + 28-Day Tracking Card</span>
+                  <span>{t.modal.giftsIncluded}:</span>
+                  <span>Cryo Spatula + 28-Day Tracking Card</span>
                 </div>
               </div>
 
@@ -109,7 +118,7 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                 }}
                 className="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl cursor-pointer hover:bg-slate-800 transition-all"
               >
-                Done & Return to Store
+                {t.header.brandName} Store
               </button>
             </div>
           ) : (
@@ -117,7 +126,7 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
               {/* Variant Switcher Pills */}
               <div className="space-y-2">
                 <label className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 block">
-                  Select Course Size (Shopify Variant):
+                  {t.hero.selectCourse}
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {PRODUCT_VARIANTS.map((v) => {
@@ -133,7 +142,7 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                         }`}
                       >
                         <div className="text-xs font-black">{v.size}</div>
-                        <div className="text-[11px] text-sky-700 font-bold">${v.sellingPrice}</div>
+                        <div className="text-[11px] text-sky-700 font-bold">{formatPrice(v.sellingPrice)}</div>
                       </button>
                     );
                   })}
@@ -150,18 +159,18 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                 />
                 <div className="flex-1 space-y-1">
                   <h4 className="font-black text-slate-900 text-xs sm:text-sm line-clamp-1">
-                    {selectedVariant.name}
+                    {currentVariantT.name}
                   </h4>
                   <div className="flex items-baseline gap-2">
                     <span className="font-black text-slate-900 text-base">
-                      ${selectedVariant.sellingPrice.toFixed(2)}
+                      {formatPrice(selectedVariant.sellingPrice)}
                     </span>
                     <span className="text-xs text-slate-400 line-through">
-                      ${selectedVariant.compareAtPrice.toFixed(2)}
+                      {formatPrice(selectedVariant.compareAtPrice)}
                     </span>
                   </div>
                   <span className="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.2 rounded">
-                    You Save ${selectedVariant.savings.toFixed(2)}
+                    {t.variants.save} {formatPrice(selectedVariant.savings)}
                   </span>
                 </div>
 
@@ -188,34 +197,34 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-sky-600 shrink-0" />
                   <div>
-                    <span className="font-extrabold text-slate-900 text-xs block">First Order 10% Off Applied</span>
+                    <span className="font-extrabold text-slate-900 text-xs block">{t.modal.applied}</span>
                     <span className="text-[10px] text-sky-700">Code: PEPTIDE10 (-10%)</span>
                   </div>
                 </div>
                 <span className="text-xs font-black text-emerald-700">
-                  -${promoDiscount.toFixed(2)}
+                  -{formatPrice(promoDiscount)}
                 </span>
               </div>
 
               {/* Price Calculation Breakdown */}
               <div className="space-y-1.5 pt-2 border-t border-slate-100 text-xs">
                 <div className="flex justify-between text-slate-600">
-                  <span>Subtotal</span>
-                  <span>${itemTotal.toFixed(2)}</span>
+                  <span>{t.modal.subtotal}</span>
+                  <span>{formatPrice(itemTotal)}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
-                  <span>Worldwide Tracked Shipping</span>
-                  <span className="text-emerald-600 font-bold">FREE</span>
+                  <span>{t.modal.shipping}</span>
+                  <span className="text-emerald-600 font-bold">{t.modal.free}</span>
                 </div>
                 {discountApplied && (
                   <div className="flex justify-between text-emerald-700 font-bold">
-                    <span>Promo Discount (PEPTIDE10)</span>
-                    <span>-${promoDiscount.toFixed(2)}</span>
+                    <span>{t.modal.discount} (PEPTIDE10)</span>
+                    <span>-{formatPrice(promoDiscount)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-slate-900 font-black text-base pt-2 border-t border-slate-200">
-                  <span>Total (USD)</span>
-                  <span className="text-sky-700">${finalTotal.toFixed(2)}</span>
+                  <span>{t.modal.total}</span>
+                  <span className="text-sky-700">{formatPrice(finalTotal)}</span>
                 </div>
               </div>
 
@@ -226,11 +235,11 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
                 className="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black py-4 rounded-xl text-base shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
               >
                 {isCheckingOut ? (
-                  <span>Connecting to Shopify Secure Checkout...</span>
+                  <span>{t.modal.processing}</span>
                 ) : (
                   <>
                     <Lock className="w-4 h-4 text-slate-950" />
-                    <span>Secure Checkout • ${finalTotal.toFixed(2)}</span>
+                    <span>{t.modal.instantCheckout} • {formatPrice(finalTotal)}</span>
                     <ArrowRight className="w-4 h-4 text-slate-950" />
                   </>
                 )}
@@ -240,12 +249,12 @@ export const PrototypeModal: React.FC<PrototypeModalProps> = ({
               <div className="flex items-center justify-center gap-4 text-[11px] text-slate-500 pt-1">
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  256-Bit SSL Encryption
+                  {t.modal.guaranteeNotice}
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
                   <Truck className="w-3.5 h-3.5 text-sky-600" />
-                  Tracked 24h Dispatch
+                  {t.topBar.leftGuarantee}
                 </span>
               </div>
             </>

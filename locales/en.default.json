@@ -3,7 +3,8 @@
     "accessibility": {
       "skip_to_content": "Skip to content",
       "close": "Close",
-      "cart_drawer": "Cart drawer"
+      "cart_drawer": "Cart drawer",
+      "language_selector": "Select Language"
     },
     "meta": {
       "tags": "Tags",
@@ -17,23 +18,35 @@
   },
   "sections": {
     "header": {
+      "brand": "PeptiDerm",
+      "tagline": "Clinical Dermatology Laboratories",
       "cart_count": "Cart ({{ count }})",
+      "order_now": "Order Now",
       "menu": "Menu"
     },
+    "announcement": {
+      "flash_badge": "FLASH SPECIAL",
+      "offer_text": "UP TO 41% OFF • FREE CRYO SPATULA WITH 50ML/100ML • WORLDWIDE EXPRESS SHIPPING",
+      "guarantee": "30-Day Money-Back Guarantee"
+    },
     "cart": {
-      "title": "Your Cart",
+      "title": "Shopify Instant Cart & Checkout",
       "empty": "Your cart is currently empty",
-      "checkout": "Proceed to Checkout",
+      "checkout": "Proceed to Instant Secure Checkout",
       "subtotal": "Subtotal",
+      "discount": "Discount",
       "savings": "You save",
-      "shipping_note": "Free tracked worldwide shipping"
+      "shipping_note": "Free tracked worldwide shipping",
+      "guarantee_note": "30-Day Money Back Guarantee • Encrypted Medical Dispatch"
     },
     "product": {
       "add_to_cart": "Add to Cart",
       "buy_now": "Order Now",
+      "claim_offer": "Claim Clinical Trial Offer",
       "sold_out": "Sold Out",
       "regular_price": "Regular price",
-      "sale_price": "Sale price"
+      "sale_price": "Sale price",
+      "select_variant": "Select Your Clinical Course"
     }
   }
 }

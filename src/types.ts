@@ -1,3 +1,13 @@
+export type SupportedLanguage = 'en' | 'fr' | 'ru' | 'es';
+
+export interface LanguageOption {
+  code: SupportedLanguage;
+  name: string;
+  nativeName: string;
+  flag: string;
+  currencySymbol: string;
+}
+
 export interface ProductVariant {
   id: string;
   size: string;

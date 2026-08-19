@@ -1,7 +1,8 @@
 import React from 'react';
-import { Truck, RotateCcw, ArrowRight, Sparkles, ShieldCheck, Award } from 'lucide-react';
+import { Truck, RotateCcw, ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
 import { PRODUCT_INFO, PRODUCT_IMAGES } from '../data/productData';
 import { ProductVariant } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FinalCTAProps {
   selectedVariant: ProductVariant;
@@ -9,6 +10,8 @@ interface FinalCTAProps {
 }
 
 export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick }) => {
+  const { t, formatPrice } = useLanguage();
+
   return (
     <section className="bg-gradient-to-b from-white via-sky-50/40 to-slate-100 py-16 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto bg-gradient-to-br from-slate-900 via-sky-950 to-slate-950 text-white border-2 border-sky-600/40 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
@@ -28,13 +31,13 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick 
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute top-2.5 left-2.5 bg-sky-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wide">
-                Direct Lab Special
+                {t.hero.labTag}
               </div>
             </div>
 
             <div className="bg-slate-800/80 border border-slate-700/80 rounded-xl p-3 text-center text-xs space-y-1">
               <span className="font-extrabold text-white block">{PRODUCT_INFO.name}</span>
-              <span className="text-slate-400 text-[11px] block">7 Bio-Mimetic Peptides • 28-Day Clinical Trial Proof</span>
+              <span className="text-slate-400 text-[11px] block">{t.hero.headlineSubtitle}</span>
             </div>
           </div>
 
@@ -44,28 +47,28 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick 
             <div className="space-y-2">
               <div className="inline-flex items-center gap-1.5 bg-sky-900/80 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-500/40">
                 <Sparkles className="w-3.5 h-3.5 text-sky-400" />
-                <span>30-DAY CELLULAR RENEWAL GUARANTEE</span>
+                <span>{t.finalCta.badge}</span>
               </div>
               
               <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
-                Give your skin the power of gentle, deep collagen regeneration.
+                {t.finalCta.title}
               </h2>
 
               <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                No peeling. No redness. No compromises. Order today and experience visible wrinkle volume reduction in 28 days.
+                {t.finalCta.subtitle}
               </p>
             </div>
 
             {/* Price Row for Selected Variant */}
             <div className="flex items-baseline gap-3">
               <span className="text-3xl sm:text-4xl font-black text-white">
-                ${selectedVariant.sellingPrice}
+                {formatPrice(selectedVariant.sellingPrice)}
               </span>
               <span className="text-lg text-slate-400 line-through font-semibold">
-                ${selectedVariant.compareAtPrice}
+                {formatPrice(selectedVariant.compareAtPrice)}
               </span>
               <span className="text-xs bg-emerald-950 text-emerald-300 font-bold px-2.5 py-1 rounded-full border border-emerald-700">
-                Selected: {selectedVariant.size} (Save ${selectedVariant.savings})
+                {selectedVariant.size} • {t.variants.save} {formatPrice(selectedVariant.savings)}
               </span>
             </div>
 
@@ -73,9 +76,9 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick 
             <div>
               <button
                 onClick={onCtaClick}
-                className="w-full bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-black text-lg py-4 px-6 rounded-xl shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
+                className="w-full bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-black text-base sm:text-lg py-4 px-6 rounded-xl shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer active:scale-98"
               >
-                <span>Order {selectedVariant.size} Now • ${selectedVariant.sellingPrice}</span>
+                <span>{t.finalCta.orderNow} ({selectedVariant.size} • {formatPrice(selectedVariant.sellingPrice)})</span>
                 <ArrowRight className="w-5 h-5 text-slate-950 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -83,17 +86,17 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ selectedVariant, onCtaClick 
               <div className="flex items-center justify-center gap-4 text-xs font-semibold text-slate-400 mt-3">
                 <span className="flex items-center gap-1">
                   <Truck className="w-3.5 h-3.5 text-sky-400" />
-                  Free Express Shipping
+                  {t.topBar.leftGuarantee}
                 </span>
                 <span className="text-slate-600">•</span>
                 <span className="flex items-center gap-1">
                   <RotateCcw className="w-3.5 h-3.5 text-sky-400" />
-                  30-Day Money-Back
+                  {t.topBar.rightGuarantee}
                 </span>
                 <span className="text-slate-600">•</span>
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  100% Authentic
+                  ISO 22716
                 </span>
               </div>
             </div>
