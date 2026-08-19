@@ -1,21 +1,39 @@
 {%- if section.settings.show_bar -%}
-<div class="bg-gradient-to-r from-slate-900 via-sky-950 to-slate-900 text-white text-xs py-2.5 px-4 border-b border-sky-900/60 sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<div id="shopify-top-announcement" class="bg-gradient-to-r from-slate-950 via-sky-950 to-slate-950 text-white text-xs py-1.5 sm:py-2 px-3 sm:px-4 border-b border-sky-900/60 sticky top-0 z-50 overflow-hidden">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
     
-    <div class="hidden md:flex items-center gap-2 text-sky-300 font-bold">
+    <!-- Left Clinical Guarantee -->
+    <div class="hidden xl:flex items-center gap-2 text-sky-300 font-bold text-[11px] shrink-0 whitespace-nowrap">
       <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span>{{ section.settings.left_badge | default: 'GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED' }}</span>
+      <span data-i18n="topBar.leftGuarantee">{{ section.settings.left_badge | default: 'GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED' }}</span>
     </div>
 
-    <div class="flex-1 text-center font-extrabold tracking-wide flex items-center justify-center gap-2">
-      <span class="bg-sky-500 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded shadow-2xs">
-        {{ section.settings.tag | default: 'FLASH SPECIAL' }}
+    <!-- Center Dynamic Announcement (Guaranteed single line, never wraps) -->
+    <div class="flex-1 flex items-center justify-center gap-2 min-w-0 overflow-hidden text-center">
+      {%- if section.settings.tag != blank -%}
+        <span class="bg-sky-500 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded shrink-0 shadow-2xs" data-i18n="topBar.badge">
+          {{ section.settings.tag | default: 'FLASH SPECIAL' }}
+        </span>
+      {%- endif -%}
+      <span class="font-extrabold text-[11px] sm:text-xs text-white tracking-wide truncate" data-i18n="topBar.offerText">
+        {{ section.settings.message | default: 'LIMITED TIME: UP TO 41% OFF + FREE CRYO SPATULA WITH 50ML/100ML + FREE WORLDWIDE SHIPPING' }}
       </span>
-      <span>{{ section.settings.message | default: 'LIMITED TIME: UP TO 41% OFF + FREE CRYO SPATULA WITH 50ML/100ML + FREE WORLDWIDE SHIPPING' }}</span>
     </div>
 
-    <div class="hidden md:flex items-center gap-3 text-slate-300 font-medium">
-      <span>30-Day Money-Back Guarantee</span>
+    <!-- Right Guarantee -->
+    <div class="hidden lg:flex items-center gap-1.5 text-slate-300 text-[11px] font-semibold shrink-0 whitespace-nowrap">
+      <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      <span data-i18n="topBar.rightGuarantee">{{ section.settings.right_guarantee | default: '30-Day Money-Back Guarantee' }}</span>
+    </div>
+
+    <!-- Mobile Mini Language Selector -->
+    <div class="sm:hidden shrink-0">
+      <select onchange="changeShopifyLanguage(this.value)" class="shopify-lang-select bg-slate-900 text-sky-300 text-[10px] font-bold border border-slate-700 rounded px-1.5 py-0.5 outline-none cursor-pointer">
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+        <option value="ru">RU</option>
+        <option value="es">ES</option>
+      </select>
     </div>
 
   </div>
@@ -49,6 +67,12 @@
       "id": "left_badge",
       "label": "Left Guarantee Badge",
       "default": "GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED"
+    },
+    {
+      "type": "text",
+      "id": "right_guarantee",
+      "label": "Right Guarantee",
+      "default": "30-Day Money-Back Guarantee"
     }
   ]
 }

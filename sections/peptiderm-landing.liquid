@@ -46,111 +46,6 @@
 </form>
 
 <div id="peptiderm-shopify-root" class="w-full text-slate-900 bg-white font-sans antialiased selection:bg-sky-200 selection:text-sky-950">
-  
-  {% assign brand_title = section.settings.brand_name | default: current_product.vendor | default: shop.name | default: 'PeptiDerm' %}
-  {% assign brand_sub = section.settings.brand_tagline | default: 'Clinical Dermatology Laboratories' %}
-  {% assign promo_badge = section.settings.announcement_badge | default: 'FLASH SPECIAL' %}
-  {% assign promo_text = section.settings.announcement_text | default: 'UP TO 41% OFF • FREE CRYO SPATULA WITH 50ML/100ML • WORLDWIDE EXPRESS SHIPPING' %}
-  {% assign left_guarantee = section.settings.top_left_text | default: 'GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED' %}
-  {% assign right_guarantee = section.settings.top_right_text | default: '30-Day Money-Back Guarantee' %}
-
-  <!-- ========================================== -->
-  <!-- 0A. DYNAMIC TOP ANNOUNCEMENT BAR (NO HARDCODING, NO WRAPPING BUGS) -->
-  <!-- ========================================== -->
-  <div class="bg-gradient-to-r from-slate-950 via-sky-950 to-slate-950 text-white text-xs py-2 px-3 sm:px-4 border-b border-sky-900/60 sticky top-0 z-50 overflow-hidden">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
-      
-      <!-- Left Clinical Guarantee -->
-      {% if left_guarantee != blank %}
-        <div class="hidden xl:flex items-center gap-2 text-sky-300 font-bold text-[11px] shrink-0 whitespace-nowrap">
-          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>{{ left_guarantee }}</span>
-        </div>
-      {% endif %}
-
-      <!-- Center Dynamic Announcement (Single line guaranteed, never wraps into 8 lines) -->
-      <div class="flex-1 flex items-center justify-center gap-2 min-w-0 overflow-hidden">
-        {% if promo_badge != blank %}
-          <span class="bg-sky-500 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded shrink-0 shadow-2xs">
-            {{ promo_badge }}
-          </span>
-        {% endif %}
-        <span class="font-extrabold text-[11px] sm:text-xs text-white tracking-wide truncate">
-          {{ promo_text }}
-        </span>
-      </div>
-
-      <!-- Right Guarantee -->
-      {% if right_guarantee != blank %}
-        <div class="hidden lg:flex items-center gap-1.5 text-slate-300 text-[11px] font-semibold shrink-0 whitespace-nowrap">
-          <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <span>{{ right_guarantee }}</span>
-        </div>
-      {% endif %}
-
-    </div>
-  </div>
-
-  <!-- ========================================== -->
-  <!-- 0B. DYNAMIC BRAND & LAB HEADER -->
-  <!-- ========================================== -->
-  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-[33px] z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-18 flex items-center justify-between gap-4">
-      
-      <!-- Dynamic Brand Identity -->
-      <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
-        {% if section.settings.logo_image != blank %}
-          <img src="{{ section.settings.logo_image | image_url: width: 100 }}" alt="{{ brand_title }}" class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl object-contain">
-        {% else %}
-          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-sky-600 to-slate-900 flex items-center justify-center text-white font-black text-base sm:text-xl shadow-md shrink-0">
-            {{ brand_title | slice: 0, 1 | upcase }}
-          </div>
-        {% endif %}
-        <div class="min-w-0">
-          <div class="flex items-center gap-1">
-            <span class="font-black text-base sm:text-xl text-slate-900 tracking-tight truncate">
-              {{ brand_title }}
-            </span>
-            <span class="text-[10px] sm:text-xs text-sky-600 font-extrabold">™</span>
-          </div>
-          {% if brand_sub != blank %}
-            <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-500 tracking-wider block -mt-0.5 truncate max-w-[180px] sm:max-w-xs">
-              {{ brand_sub }}
-            </span>
-          {% endif %}
-        </div>
-      </div>
-
-      <!-- Dynamic Feature Badges -->
-      <div class="hidden xl:flex items-center gap-5 text-xs text-slate-600 font-semibold whitespace-nowrap">
-        <div class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-sky-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          <span>{{ section.settings.feature_1_text | default: '7 Bio-Mimetic Signal Peptides' }}</span>
-        </div>
-        <div class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-sky-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-          <span>{{ section.settings.feature_2_text | default: '28-Day Clinical Trial Proof' }}</span>
-        </div>
-        <div class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <span>{{ section.settings.feature_3_text | default: '99.8% Tolerance Rate' }}</span>
-        </div>
-      </div>
-
-      <!-- Right Header Action Button -->
-      <div class="flex items-center gap-2 shrink-0">
-        <button
-          type="button"
-          onclick="openShopifyCartDrawer()"
-          class="bg-slate-900 hover:bg-sky-950 text-white font-black text-xs sm:text-sm px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer active:scale-98 whitespace-nowrap"
-        >
-          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-          <span>{{ section.settings.header_cta_text | default: 'Order Now' }}</span>
-        </button>
-      </div>
-
-    </div>
-  </header>
 
   <!-- ========================================== -->
   <!-- 1. HERO SECTION & VARIANT SELECTOR -->
@@ -165,57 +60,59 @@
         <div class="relative aspect-4/3 rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl bg-white p-6 flex items-center justify-center group">
           <img
             id="hero-active-img"
-            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80"
+            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85"
             alt="PeptiDerm Cellular Renewal Multi-Peptide Cream"
             class="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
           >
-          <div class="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-md text-white text-[11px] font-black px-3.5 py-1.5 rounded-full border border-slate-700 shadow-md">
-            7 BIO-MIMETIC SIGNAL PEPTIDES
+          <div class="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-md text-white text-[10px] sm:text-[11px] font-black px-3.5 py-1.5 rounded-full border border-slate-700 shadow-md flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+            <span data-i18n="hero.labTag">7 BIO-MIMETIC SIGNAL PEPTIDES</span>
           </div>
-          <div class="absolute bottom-4 right-4 bg-sky-600/90 backdrop-blur-md text-white text-[11px] font-black px-3 py-1 rounded-full shadow-md">
-            28-Day Clinical Trial Verified
+          <div class="absolute bottom-4 right-4 bg-sky-600/90 backdrop-blur-md text-white text-[10px] sm:text-[11px] font-black px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            <span data-i18n="hero.clinicalProofTag">28-Day Clinical Trial Verified</span>
           </div>
         </div>
 
         <!-- 4 Gallery Thumbnails -->
         <div class="grid grid-cols-4 gap-2.5">
-          <button type="button" onclick="setHeroGalleryImage('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80', this)" class="gallery-thumb border-2 border-sky-600 ring-2 ring-sky-600/20 rounded-xl overflow-hidden aspect-square p-1 bg-white cursor-pointer">
-            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=300&q=80" alt="Core bottle" class="w-full h-full object-cover rounded-lg">
+          <button type="button" onclick="setHeroGalleryImage('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85', this)" class="gallery-thumb border-2 border-sky-600 ring-2 ring-sky-600/20 rounded-xl overflow-hidden aspect-square p-1 bg-white cursor-pointer">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=85" alt="Core Airless Bottle" class="w-full h-full object-cover rounded-lg">
           </button>
-          <button type="button" onclick="setHeroGalleryImage('https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80', this)" class="gallery-thumb border-2 border-slate-200 hover:border-slate-300 rounded-xl overflow-hidden aspect-square p-1 bg-white cursor-pointer opacity-70 hover:opacity-100">
-            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=300&q=80" alt="Texture" class="w-full h-full object-cover rounded-lg">
+          <button type="button" onclick="setHeroGalleryImage('https://images.unsplash.com/photo-1608248597359-00958197779d?auto=format&fit=crop&w=1200&q=85', this)" class="gallery-thumb border-2 border-slate-200 hover:border-slate-300 rounded-xl overflow-hidden aspect-square p-1 bg-white cursor-pointer opacity-70 hover:opacity-100">
+            <img src="https://images.unsplash.com/photo-1608248597359-00958197779d?auto=format&fit=crop&w=300&q=85" alt="Clinical Cream Texture" class="w-full h-full object-cover rounded-lg">
           </button>
-          <button type="button" onclick="setHeroGalleryImage('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80', this)" class="gallery-thumb border-2 border-slate-200 hover:border-slate-300 rounded-xl overflow-hidden aspect-square p-1 bg-white cursor-pointer opacity-70 hover:opacity-100">
-            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=80" alt="Lab" class="w-full h-full object-cover rounded-lg">
+          <button type="button" onclick="setHeroGalleryImage('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=85', this)" class="gallery-thumb border-2 border-slate-200 hover:border-slate-300 rounded-xl overflow-hidden aspect-square p-1 bg-white cursor-pointer opacity-70 hover:opacity-100">
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=85" alt="Cleanroom Laboratory" class="w-full h-full object-cover rounded-lg">
           </button>
-          <button type="button" onclick="setHeroGalleryImage('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=80', this)" class="gallery-thumb border-2 border-slate-200 hover:border-slate-300 rounded-xl overflow-hidden aspect-square p-1 bg-white cursor-pointer opacity-70 hover:opacity-100">
-            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=300&q=80" alt="Doctor" class="w-full h-full object-cover rounded-lg">
+          <button type="button" onclick="setHeroGalleryImage('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=85', this)" class="gallery-thumb border-2 border-slate-200 hover:border-slate-300 rounded-xl overflow-hidden aspect-square p-1 bg-white cursor-pointer opacity-70 hover:opacity-100">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=300&q=85" alt="Board-Certified Dermatologist" class="w-full h-full object-cover rounded-lg">
           </button>
         </div>
 
-        <!-- 4 Quick Highlights -->
+        <!-- 4 Clinical Benchmarks -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
           <div class="bg-white border border-slate-200/90 rounded-2xl p-2.5 shadow-2xs">
             <span class="text-sky-700 font-black block text-sm">-42.8%</span>
-            <span class="text-slate-500 text-[10px]">Wrinkle Volume</span>
+            <span class="text-slate-500 text-[10px]" data-i18n="hero.benchmarks.wrinkle">Wrinkle Volume</span>
           </div>
           <div class="bg-white border border-slate-200/90 rounded-2xl p-2.5 shadow-2xs">
             <span class="text-sky-700 font-black block text-sm">+68.4%</span>
-            <span class="text-slate-500 text-[10px]">Dermal Collagen</span>
+            <span class="text-slate-500 text-[10px]" data-i18n="hero.benchmarks.collagen">Dermal Collagen</span>
           </div>
           <div class="bg-white border border-slate-200/90 rounded-2xl p-2.5 shadow-2xs">
             <span class="text-sky-700 font-black block text-sm">99.8%</span>
-            <span class="text-slate-500 text-[10px]">Tolerance Rate</span>
+            <span class="text-slate-500 text-[10px]" data-i18n="hero.benchmarks.tolerance">Tolerance Rate</span>
           </div>
           <div class="bg-white border border-slate-200/90 rounded-2xl p-2.5 shadow-2xs">
-            <span class="text-emerald-700 font-black block text-sm">3-Sec</span>
-            <span class="text-slate-500 text-[10px]">Matte Absorption</span>
+            <span class="text-emerald-700 font-black block text-sm">3.2s</span>
+            <span class="text-slate-500 text-[10px]" data-i18n="hero.benchmarks.absorption">Matte Absorption</span>
           </div>
         </div>
 
       </div>
 
-      <!-- Right Column: Copy & Shopify Interactive Variant Selector -->
+      <!-- Right Column: Copy & Shopify Variant Selector -->
       <div class="lg:col-span-6 space-y-6">
         
         <div class="space-y-2">
@@ -225,18 +122,18 @@
               ★★★★★
             </div>
             <span class="text-xs font-bold text-slate-800">4.96 / 5.0</span>
-            <span class="text-xs text-slate-400">(3,842 Verified Clinical Reviews)</span>
+            <span class="text-xs text-slate-400" data-i18n="hero.ratingText">(3,842 Verified Clinical Reviews)</span>
           </div>
 
           <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200">
-            <span>CLINICAL BREAKTHROUGH • CELLULAR REGENERATION</span>
+            <span data-i18n="hero.headlineLead">CLINICAL BREAKTHROUGH • CELLULAR REGENERATION</span>
           </div>
 
-          <h1 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-snug">
+          <h1 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-snug" data-i18n="hero.headlineTitle">
             {{ section.settings.heading | default: '7 Bio-Mimetic Peptides • Rebuild Youthful Collagen in 28 Days' }}
           </h1>
 
-          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed" data-i18n="hero.headlineSubtitle">
             {{ section.settings.subheading | default: 'Resolve the anti-aging contradiction: potent clinical wrinkle repair without barrier damage, peeling, or irritation. Experience 99.8% physiological tolerance and -42.8% wrinkle depth reduction.' }}
           </p>
         </div>
@@ -244,8 +141,8 @@
         <!-- 3-Tier Interactive Variant Selector Box -->
         <div class="space-y-3 bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5">
           <div class="flex items-center justify-between text-xs">
-            <span class="font-extrabold text-slate-900 uppercase tracking-wider">Select Course (Shopify Variant Matrix):</span>
-            <span class="text-emerald-700 font-bold">In Stock • Dispatched in 24h</span>
+            <span class="font-extrabold text-slate-900 uppercase tracking-wider" data-i18n="hero.selectCourse">Select Course (Shopify Variant Matrix):</span>
+            <span class="text-emerald-700 font-bold" data-i18n="hero.stockLeft">In Stock • Dispatched in 24h</span>
           </div>
 
           <div class="grid grid-cols-3 gap-2.5">
@@ -253,52 +150,52 @@
             <!-- 30ml Starter -->
             <button
               type="button"
-              onclick="selectThemeVariant('30ml', 29, 49, '30ml Discovery Starter Kit (2-3 Weeks Supply)', '{{ current_product.variants[0].id | default: '' }}')"
+              onclick="selectThemeVariant('30ml', 29, 49, null, '{{ current_product.variants[0].id | default: '' }}')"
               id="var-btn-30ml"
               class="variant-btn p-3 rounded-2xl border text-left bg-white border-slate-200 hover:border-sky-400 transition-all cursor-pointer"
             >
-              <div class="text-xs font-black text-slate-900">30ml Starter</div>
-              <div class="text-sm font-black text-sky-700 mt-1">$29 <span class="text-[10px] text-slate-400 line-through font-normal">$49</span></div>
+              <div class="text-xs font-black text-slate-900">30ml</div>
+              <div class="text-sm font-black text-sky-700 mt-1">$29.00 <span class="text-[10px] text-slate-400 line-through font-normal">$49.00</span></div>
               <div class="text-[10px] text-slate-500 mt-0.5">Save $20</div>
             </button>
 
             <!-- 50ml Most Popular -->
             <button
               type="button"
-              onclick="selectThemeVariant('50ml', 49, 79, '50ml Core Treatment (Full 28-Day Cycle • FREE Cryo Spatula)', '{{ current_product.variants[1].id | default: default_variant.id }}')"
+              onclick="selectThemeVariant('50ml', 49, 79, null, '{{ current_product.variants[1].id | default: default_variant.id }}')"
               id="var-btn-50ml"
               class="variant-btn p-3 rounded-2xl border-2 text-left bg-sky-50/80 border-sky-600 ring-2 ring-sky-600/20 shadow-sm transition-all cursor-pointer relative"
             >
-              <div class="absolute -top-2.5 right-2 bg-amber-500 text-slate-950 text-[9px] font-black px-2 py-0.5 rounded-full">
+              <div class="absolute -top-2.5 right-2 bg-amber-500 text-slate-950 text-[9px] font-black px-2 py-0.5 rounded-full truncate max-w-[95%]">
                 82% CHOOSE THIS
               </div>
-              <div class="text-xs font-black text-slate-900">50ml Core Treatment</div>
-              <div class="text-sm font-black text-sky-700 mt-1">$49 <span class="text-[10px] text-slate-400 line-through font-normal">$79</span></div>
+              <div class="text-xs font-black text-slate-900">50ml</div>
+              <div class="text-sm font-black text-sky-700 mt-1">$49.00 <span class="text-[10px] text-slate-400 line-through font-normal">$79.00</span></div>
               <div class="text-[10px] text-emerald-700 font-bold mt-0.5">Save $30 + Free Gifts</div>
             </button>
 
             <!-- 100ml Best Value -->
             <button
               type="button"
-              onclick="selectThemeVariant('100ml', 79, 129, '100ml Clinical Course (3-4 Months • FREE 30ml + Spatula)', '{{ current_product.variants[2].id | default: '' }}')"
+              onclick="selectThemeVariant('100ml', 79, 129, null, '{{ current_product.variants[2].id | default: '' }}')"
               id="var-btn-100ml"
               class="variant-btn p-3 rounded-2xl border text-left bg-white border-slate-200 hover:border-sky-400 transition-all cursor-pointer relative"
             >
-              <div class="absolute -top-2.5 right-2 bg-sky-900 text-white text-[9px] font-black px-2 py-0.5 rounded-full">
+              <div class="absolute -top-2.5 right-2 bg-sky-900 text-white text-[9px] font-black px-2 py-0.5 rounded-full truncate max-w-[95%]">
                 BEST VALUE
               </div>
-              <div class="text-xs font-black text-slate-900">100ml Clinical Double</div>
-              <div class="text-sm font-black text-sky-700 mt-1">$79 <span class="text-[10px] text-slate-400 line-through font-normal">$129</span></div>
+              <div class="text-xs font-black text-slate-900">100ml</div>
+              <div class="text-sm font-black text-sky-700 mt-1">$79.00 <span class="text-[10px] text-slate-400 line-through font-normal">$129.00</span></div>
               <div class="text-[10px] text-slate-500 mt-0.5">Save $50 • Free Full Size</div>
             </button>
 
           </div>
 
-          <!-- Dynamic Active Variant Summary Strip -->
+          <!-- Active Variant Summary Strip -->
           <div class="pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs">
             <div>
               <span class="text-slate-500">Selected: </span>
-              <strong id="selected-variant-label" class="text-slate-900 font-black">50ml Core Treatment (Full 28-Day Cycle • FREE Cryo Spatula)</strong>
+              <strong id="selected-variant-label" class="text-slate-900 font-black">50ml Core Cellular Treatment (6-8 Weeks)</strong>
             </div>
             <div class="text-right">
               <span id="selected-price-display" class="text-xl font-black text-sky-700">$49.00</span>
@@ -324,7 +221,7 @@
             onclick="openShopifyCartDrawer()"
             class="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black text-base sm:text-lg py-4 px-6 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
           >
-            <span>Order Now • 30-Day Money-Back Guarantee</span>
+            <span data-i18n="hero.ctaButton">Order Now • 30-Day Money-Back Guarantee</span>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </button>
 
@@ -343,92 +240,199 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- 2. INTERACTIVE 28-DAY VISUAL COMPARISON -->
+  <!-- 2. UPGRADED CLINICAL 28-DAY VISUAL COMPARISON -->
   <!-- ========================================== -->
   <section class="bg-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6 border-b border-slate-800">
     <div class="max-w-6xl mx-auto space-y-8 sm:space-y-10">
       
+      <!-- Header -->
       <div class="text-center space-y-2.5 max-w-2xl mx-auto">
         <div class="inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 text-xs font-black px-3.5 py-1 rounded-full border border-sky-500/30 uppercase tracking-wider">
-          <span>28-DAY OPTICAL TOPOGRAPHY PROOF</span>
+          <span data-i18n="comparison.badge">28-DAY OPTICAL TOPOGRAPHY PROOF</span>
         </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-white">Visual Proof: Before & After 28-Day Clinical Trial</h2>
-        <p class="text-slate-400 text-xs sm:text-sm">Drag the interactive slider below to inspect dermatological skin topography changes.</p>
+        <h2 class="text-2xl sm:text-4xl font-black text-white" data-i18n="comparison.title">Visual Proof: Before & After 28-Day Clinical Trial</h2>
+        <p class="text-slate-400 text-xs sm:text-sm" data-i18n="comparison.subtitle">Double-blind German PRIMOS 3D micro-optical profilometry tracking cellular dermal density and wrinkle volume reduction.</p>
       </div>
 
-      <!-- Interactive Split Slider Container -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-        <div class="lg:col-span-8 bg-slate-950 rounded-3xl p-3 sm:p-4 border border-slate-800 shadow-2xl relative overflow-hidden">
-          <div class="relative aspect-4/3 sm:aspect-16/10 rounded-2xl overflow-hidden select-none touch-none" id="liquid-slider-container">
+      <!-- Concern Tabs & View Mode Switcher -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <!-- 3 Clinical Concern Buttons -->
+        <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 no-scrollbar">
+          <button
+            type="button"
+            onclick="setComparisonConcern('nasolabial')"
+            id="concern-tab-nasolabial"
+            class="concern-tab-btn px-4 py-2 rounded-xl text-xs font-black transition-all bg-sky-600 text-white shadow-md cursor-pointer whitespace-nowrap"
+          >
+            Smile Folds (-42.8%)
+          </button>
+          <button
+            type="button"
+            onclick="setComparisonConcern('crowsfeet')"
+            id="concern-tab-crowsfeet"
+            class="concern-tab-btn px-4 py-2 rounded-xl text-xs font-black transition-all text-slate-400 hover:text-white cursor-pointer whitespace-nowrap"
+          >
+            Eye Contour (-38.5%)
+          </button>
+          <button
+            type="button"
+            onclick="setComparisonConcern('forehead')"
+            id="concern-tab-forehead"
+            class="concern-tab-btn px-4 py-2 rounded-xl text-xs font-black transition-all text-slate-400 hover:text-white cursor-pointer whitespace-nowrap"
+          >
+            Collagen Density (+68.4%)
+          </button>
+        </div>
+
+        <!-- View Mode: Slider vs Side-by-Side -->
+        <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-bold shrink-0">
+          <button
+            type="button"
+            onclick="setComparisonViewMode('slider')"
+            id="mode-btn-slider"
+            class="px-3 py-1.5 rounded-lg transition-all bg-slate-800 text-sky-300 cursor-pointer"
+            data-i18n="comparison.sliderTab"
+          >
+            Interactive Split Slider
+          </button>
+          <button
+            type="button"
+            onclick="setComparisonViewMode('sideBySide')"
+            id="mode-btn-sideBySide"
+            class="px-3 py-1.5 rounded-lg transition-all text-slate-400 hover:text-white cursor-pointer"
+            data-i18n="comparison.sideBySideTab"
+          >
+            Side-by-Side Diagnostic Proof
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Comparison Stage -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- Left: Image Viewer (Slider / Side-by-Side) -->
+        <div class="lg:col-span-8 bg-slate-950 rounded-3xl p-4 border border-slate-800 shadow-2xl flex flex-col justify-between space-y-4">
+          
+          <!-- View 1: Interactive Clip-Path Slider -->
+          <div id="comparison-slider-view" class="relative aspect-4/3 sm:aspect-16/10 rounded-2xl overflow-hidden select-none touch-none bg-slate-900 border border-slate-800">
+            
+            <!-- Bottom Layer: Day 28 Post-Treatment -->
             <img
-              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80"
-              alt="After 28 Days Clinical Treatment"
-              class="absolute inset-0 w-full h-full object-cover"
+              id="comparison-after-img"
+              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1200&q=85"
+              alt="Day 28 Skin Treatment"
+              class="absolute inset-0 w-full h-full object-cover object-center"
             >
-            <div class="absolute top-3 right-3 bg-sky-600/90 backdrop-blur-md text-white text-[11px] font-black px-3 py-1 rounded-full shadow-md z-10">
+            <div class="absolute top-3 right-3 bg-sky-600/90 backdrop-blur-md text-white text-[10px] sm:text-[11px] font-black px-3 py-1 rounded-full shadow-md z-10">
               DAY 28 • PEPTIDERM
             </div>
 
-            <div id="liquid-before-layer" class="absolute inset-0 overflow-hidden" style="width: 50%;">
+            <!-- Top Layer: Day 0 Baseline with CSS clip-path (Zero distortion) -->
+            <div
+              id="liquid-before-clip-layer"
+              class="absolute inset-0 pointer-events-none transition-none"
+              style="clip-path: inset(0 50% 0 0);"
+            >
               <img
-                src="https://images.unsplash.com/photo-1512290900672-1f5511b512c4?auto=format&fit=crop&w=800&q=80"
+                id="comparison-before-img"
+                src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1200&q=85"
                 alt="Day 0 Baseline Skin"
-                class="absolute inset-0 w-full h-full object-cover max-w-none"
-                style="width: 100%; height: 100%;"
+                class="absolute inset-0 w-full h-full object-cover object-center"
               >
-              <div class="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-md text-slate-200 text-[11px] font-black px-3 py-1 rounded-full shadow-md z-10">
+              <div class="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-md text-slate-200 text-[10px] sm:text-[11px] font-black px-3 py-1 rounded-full shadow-md z-10">
                 DAY 0 • BASELINE
               </div>
             </div>
 
-            <div id="liquid-slider-bar" class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 shadow-2xl" style="left: 50%;">
-              <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white text-slate-900 rounded-full flex items-center justify-center shadow-2xl border-2 border-sky-600 font-black text-xs">
+            <!-- Vertical Divider Handle -->
+            <div
+              id="liquid-slider-divider"
+              class="absolute top-0 bottom-0 w-1 bg-white shadow-2xl z-20 pointer-events-none"
+              style="left: 50%; transform: translateX(-50%);"
+            >
+              <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white text-slate-950 rounded-full flex items-center justify-center shadow-2xl border-2 border-sky-600 font-black text-xs">
                 ⇄
               </div>
             </div>
 
+            <!-- Full-cover Input Range Slider -->
             <input
               type="range"
               min="0"
               max="100"
               value="50"
-              oninput="document.getElementById('liquid-before-layer').style.width = this.value + '%'; document.getElementById('liquid-slider-bar').style.left = this.value + '%';"
-              class="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30"
-              aria-label="Before after comparison slider"
+              oninput="onSliderRangeInput(this.value)"
+              class="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30 m-0 p-0"
+              aria-label="Interactive Skin Comparison Slider"
             >
           </div>
 
-          <div class="flex items-center justify-between text-[11px] text-slate-400 pt-3 px-2">
-            <span>⇄ Drag slider left / right to compare</span>
+          <!-- View 2: Side-by-Side Dual View (Hidden by default) -->
+          <div id="comparison-sbs-view" class="hidden grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <div class="relative aspect-4/3 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900">
+                <img id="sbs-before-img" src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=85" alt="Day 0" class="w-full h-full object-cover">
+                <div class="absolute top-2.5 left-2.5 bg-slate-900/90 text-slate-300 text-[10px] font-black px-2.5 py-1 rounded-full">
+                  DAY 0 • BASELINE
+                </div>
+              </div>
+              <p id="sbs-before-desc" class="text-xs text-slate-400 leading-relaxed">Day 0: Deepened nasolabial creases, loss of dermal rebound, uneven skin texture.</p>
+            </div>
+            <div class="space-y-2">
+              <div class="relative aspect-4/3 rounded-2xl overflow-hidden border border-sky-600/50 bg-slate-900">
+                <img id="sbs-after-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=85" alt="Day 28" class="w-full h-full object-cover">
+                <div class="absolute top-2.5 left-2.5 bg-sky-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full">
+                  DAY 28 • PEPTIDERM
+                </div>
+              </div>
+              <p id="sbs-after-desc" class="text-xs text-slate-300 leading-relaxed font-medium">Day 28: Plumped dermal extracellular matrix, lifted fold contours, smooth luminous finish.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-slate-400 px-1 pt-1">
+            <span data-i18n="comparison.dragHint">⇄ Drag slider left / right to compare</span>
             <span class="text-sky-400 font-semibold">German PRIMOS 3D Topography</span>
           </div>
         </div>
 
-        <div class="lg:col-span-4 space-y-4">
-          <div class="bg-slate-950/80 border border-slate-800 rounded-3xl p-5 sm:p-6 space-y-4">
-            <span class="text-[10px] font-black uppercase tracking-wider text-sky-400">Day 28 Clinical Scan</span>
-            <h3 class="font-extrabold text-white text-lg sm:text-xl">Nasolabial Smile Fold Depth</h3>
+        <!-- Right: Clinical Diagnosis & Data Card -->
+        <div class="lg:col-span-4 bg-slate-950/90 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div>
+              <span id="comparison-days" class="text-[10px] font-black uppercase tracking-wider text-sky-400">Day 28 Clinical Topography</span>
+              <h3 id="comparison-title" class="font-extrabold text-white text-lg sm:text-xl mt-1">Nasolabial Smile Fold Depth & Volume</h3>
+            </div>
+
+            <!-- Big Stat Box -->
             <div class="bg-sky-950/60 border border-sky-800/80 rounded-2xl p-4 flex items-baseline justify-between">
               <div>
-                <span class="text-3xl sm:text-4xl font-black text-sky-400">-42.8%</span>
+                <span id="comparison-stat" class="text-3xl sm:text-4xl font-black text-sky-400">-42.8%</span>
                 <span class="text-xs text-slate-300 block mt-0.5 font-medium">Statistically Significant</span>
               </div>
-              <span class="text-xs text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+              <span class="text-xs text-emerald-400 font-bold bg-emerald-950/80 px-2.5 py-1 rounded border border-emerald-800">
                 p &lt; 0.001
               </span>
             </div>
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              PRIMOS 3D Optical scan proves -42.8% volume reduction with zero barrier redness.
+
+            <p id="comparison-notes" class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+              PRIMOS 3D optical profilometry confirms -42.8% fold depth reduction with zero erythema or peeling.
             </p>
-            <button
-              type="button"
-              onclick="openShopifyCartDrawer()"
-              class="w-full mt-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black py-3 rounded-xl text-xs sm:text-sm shadow-lg transition-all cursor-pointer"
-            >
-              Experience 28-Day Cellular Lift ($29+) →
-            </button>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 text-[11px] text-slate-400 space-y-1">
+              <span class="font-bold text-sky-300 block">Measurement Standard:</span>
+              <p>60 Human Subjects • ISO 22716 Certified Cleanroom Trial • Optical Topography Profilometry</p>
+            </div>
           </div>
+
+          <button
+            type="button"
+            onclick="openShopifyCartDrawer()"
+            class="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black py-3.5 px-4 rounded-xl text-xs sm:text-sm shadow-lg transition-all cursor-pointer active:scale-98"
+          >
+            <span data-i18n="comparison.cta">Experience 28-Day Cellular Lift</span> →
+          </button>
         </div>
+
       </div>
 
     </div>
@@ -444,7 +448,7 @@
         <div class="inline-flex items-center gap-1.5 bg-sky-500/20 text-sky-300 text-xs font-black px-3.5 py-1 rounded-full border border-sky-500/30 uppercase tracking-wider">
           DIALECTICAL BREAKTHROUGH • RESOLVING CONTRADICTIONS
         </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-white">Breaking the Three Core Contradictions of Anti-Aging</h2>
+        <h2 class="text-2xl sm:text-4xl font-black text-white">Breaking the Core Contradictions of Anti-Aging</h2>
         <p class="text-slate-400 text-sm sm:text-base">Anti-aging should never be a gamble that sacrifices your protective skin barrier. PeptiDerm leverages cellular bio-mimetic peptides to unify maximum potency with physiological gentleness.</p>
       </div>
 
@@ -533,7 +537,7 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- 3. CLINICAL DATA BENCHMARKS -->
+  <!-- 4. DOUBLE-BLIND CLINICAL DATA BENCHMARKS -->
   <!-- ========================================== -->
   <section class="bg-slate-50 py-16 px-4 sm:px-6 border-b border-slate-200">
     <div class="max-w-6xl mx-auto space-y-12">
@@ -580,7 +584,7 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- 4. 7 BIO-MIMETIC ACTIVE INGREDIENTS COMPLEX -->
+  <!-- 5. 7 BIO-MIMETIC ACTIVE INGREDIENTS COMPLEX -->
   <!-- ========================================== -->
   <section class="bg-white py-16 px-4 sm:px-6 border-b border-slate-200">
     <div class="max-w-6xl mx-auto space-y-12">
@@ -593,10 +597,9 @@
         <p class="text-slate-600 text-sm sm:text-base">Every ingredient is clinically dosed and encapsulated in lipid nanosomes matching your skin's natural bilayer.</p>
       </div>
 
-      <!-- 6 Ingredient Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <!-- Card 1 -->
+        <!-- Ingredient 1 -->
         <div class="bg-slate-50 border border-slate-200/90 rounded-3xl p-6 space-y-4 shadow-2xs hover:shadow-md transition-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-black uppercase tracking-wider text-sky-800 bg-sky-100 px-2.5 py-1 rounded-md">
@@ -615,7 +618,7 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
+        <!-- Ingredient 2 -->
         <div class="bg-slate-50 border border-slate-200/90 rounded-3xl p-6 space-y-4 shadow-2xs hover:shadow-md transition-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-black uppercase tracking-wider text-sky-800 bg-sky-100 px-2.5 py-1 rounded-md">
@@ -634,7 +637,7 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
+        <!-- Ingredient 3 -->
         <div class="bg-slate-50 border border-slate-200/90 rounded-3xl p-6 space-y-4 shadow-2xs hover:shadow-md transition-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-black uppercase tracking-wider text-sky-800 bg-sky-100 px-2.5 py-1 rounded-md">
@@ -653,7 +656,7 @@
           </div>
         </div>
 
-        <!-- Card 4 -->
+        <!-- Ingredient 4 -->
         <div class="bg-slate-50 border border-slate-200/90 rounded-3xl p-6 space-y-4 shadow-2xs hover:shadow-md transition-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-black uppercase tracking-wider text-sky-800 bg-sky-100 px-2.5 py-1 rounded-md">
@@ -672,7 +675,7 @@
           </div>
         </div>
 
-        <!-- Card 5 -->
+        <!-- Ingredient 5 -->
         <div class="bg-slate-50 border border-slate-200/90 rounded-3xl p-6 space-y-4 shadow-2xs hover:shadow-md transition-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-black uppercase tracking-wider text-sky-800 bg-sky-100 px-2.5 py-1 rounded-md">
@@ -691,7 +694,7 @@
           </div>
         </div>
 
-        <!-- Card 6 -->
+        <!-- Ingredient 6 -->
         <div class="bg-slate-50 border border-slate-200/90 rounded-3xl p-6 space-y-4 shadow-2xs hover:shadow-md transition-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-black uppercase tracking-wider text-sky-800 bg-sky-100 px-2.5 py-1 rounded-md">
@@ -716,364 +719,125 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- 5. COMPARISON BENCHMARK TABLE -->
+  <!-- 6. VALUE 1:1 VARIANT MATRIX SECTION -->
   <!-- ========================================== -->
   <section class="bg-slate-50 py-16 px-4 sm:px-6 border-b border-slate-200">
-    <div class="max-w-5xl mx-auto space-y-12">
-      
-      <div class="text-center space-y-3 max-w-2xl mx-auto">
-        <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 uppercase">
-          CLINICAL BENCHMARK • 3-WAY COMPARISON
-        </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-slate-900">Why Bio-Peptides Outperform Traditional Treatments</h2>
-        <p class="text-slate-600 text-sm">Compare mechanism of action, barrier tolerance, finish, and 28-day clinical efficacy side by side.</p>
-      </div>
-
-      <div class="overflow-x-auto rounded-3xl border border-slate-200 shadow-sm bg-white">
-        <table class="w-full text-left border-collapse min-w-[650px] text-xs sm:text-sm">
-          <thead>
-            <tr class="bg-slate-100/70 border-b border-slate-200">
-              <th class="p-4 font-black text-slate-600">Metric</th>
-              <th class="p-4 font-black text-white bg-slate-900">PeptiDerm™ (Bio-Peptides)</th>
-              <th class="p-4 font-bold text-slate-700">High-Strength Retinoid</th>
-              <th class="p-4 font-bold text-slate-500">Generic Moisturizer</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100">
-            <tr>
-              <td class="p-4 font-bold text-slate-800">Anti-Aging Mechanism</td>
-              <td class="p-4 font-black text-sky-700 bg-sky-50/50">7 Bio-Mimetic Peptides Signal Regeneration</td>
-              <td class="p-4 text-slate-600">Forced Chemical Exfoliation & Acid Peeling</td>
-              <td class="p-4 text-slate-400">Superficial Glycerin (Cannot reach dermis)</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-slate-800">Skin Tolerance</td>
-              <td class="p-4 font-black text-sky-700 bg-sky-50/50">99.8% Tolerance • Safe for Sensitive Skin</td>
-              <td class="p-4 text-red-600 font-medium">Prone to redness, peeling, burning</td>
-              <td class="p-4 text-slate-600">Gentle but zero wrinkle repair</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-slate-800">Day & Night Use</td>
-              <td class="p-4 font-black text-sky-700 bg-sky-50/50">100% Non-Photosensitive (AM & PM Safe)</td>
-              <td class="p-4 text-red-600 font-medium">Night-only (Severe UV photosensitivity)</td>
-              <td class="p-4 text-slate-600">AM & PM safe</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-slate-800">Texture & Finish</td>
-              <td class="p-4 font-black text-sky-700 bg-sky-50/50">Snow-Melt Liposome • 3-Sec Matte Finish</td>
-              <td class="p-4 text-slate-600">Often greasy and pore-clogging</td>
-              <td class="p-4 text-slate-600">Evaporates rapidly in dry rooms</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-slate-800">Packaging Integrity</td>
-              <td class="p-4 font-black text-sky-700 bg-sky-50/50">Medical Dual-Chamber Airless Pump</td>
-              <td class="p-4 text-slate-600">Oxidizes and discolors quickly</td>
-              <td class="p-4 text-slate-400">Standard open-mouth jar</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================== -->
-  <!-- 6. CLINICAL MORNING & NIGHT ROUTINE -->
-  <!-- ========================================== -->
-  <section class="bg-white py-16 px-4 sm:px-6 border-b border-slate-200">
-    <div class="max-w-5xl mx-auto space-y-12">
-      
-      <div class="text-center space-y-3 max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 uppercase tracking-wider">
-          CLINICAL PROTOCOL • AM & PM APPLICATION
-        </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-slate-900">How to Use PeptiDerm in Your Daily Routine</h2>
-        <p class="text-slate-600 text-sm sm:text-base">Unlike photosensitive retinoids, our bio-peptide formula is non-photosensitive and empowers both morning oxidative protection and evening deep collagen repair.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <!-- Morning Card -->
-        <div class="bg-sky-50/50 border border-sky-200/80 rounded-3xl p-6 sm:p-8 space-y-5">
-          <div class="flex items-center gap-3 border-b border-sky-200/60 pb-4">
-            <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center font-black text-lg">
-              ☀️
-            </div>
-            <div>
-              <span class="text-xs font-black uppercase text-amber-700 tracking-wider">Step 04 • Morning</span>
-              <h3 class="text-lg font-black text-slate-900">Anti-Glycation & Photo-Defense</h3>
-            </div>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            In the morning, Decarboxy Carnosine and 5 Ceramides shield against daytime free radicals, blue light, and sugar-induced collagen stiffening.
-          </p>
-          <div class="space-y-2 text-xs text-slate-700 font-medium">
-            <div class="flex items-start gap-2">
-              <span class="text-sky-600 font-bold">✓</span>
-              <span>Apply 1 pump after cleanser and Vitamin C serum</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-sky-600 font-bold">✓</span>
-              <span>Absorbs in 3 seconds to a breathable matte primer finish</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-sky-600 font-bold">✓</span>
-              <span>Follow with daily sunscreen; makeup glides on without pilling</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Evening Card -->
-        <div class="bg-slate-950 text-white border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5">
-          <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
-            <div class="w-10 h-10 rounded-2xl bg-sky-900 text-sky-300 flex items-center justify-center font-black text-lg">
-              🌙
-            </div>
-            <div>
-              <span class="text-xs font-black uppercase text-sky-400 tracking-wider">Step 04 • Evening</span>
-              <h3 class="text-lg font-black text-white">Deep Cellular Collagen Sculpting</h3>
-            </div>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            During your skin's peak nighttime repair cycle, Copper Tripeptide and Hexapeptide-8 activate fibroblasts for intensive tissue rebuilding.
-          </p>
-          <div class="space-y-2 text-xs text-slate-300 font-medium">
-            <div class="flex items-start gap-2">
-              <span class="text-sky-400 font-bold">✓</span>
-              <span>Apply 1-2 pumps over cleansed face, neck, and décolletage</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-sky-400 font-bold">✓</span>
-              <span>Use the cold zinc-alloy spatula in upward strokes along jawline</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-sky-400 font-bold">✓</span>
-              <span>Wake up to deeply plump, calm, and rested skin with zero pillow grease</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================== -->
-  <!-- 7. MEDICAL UNBOXING & ACCESSORIES -->
-  <!-- ========================================== -->
-  <section class="bg-slate-50 py-16 px-4 sm:px-6 border-b border-slate-200">
-    <div class="max-w-5xl mx-auto space-y-12">
-      
-      <div class="text-center space-y-3 max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 uppercase tracking-wider">
-          UNBOXING & PACKAGING • CLINICAL INTEGRITY
-        </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-slate-900">What’s in the Box: Medical-Grade Freshness</h2>
-        <p class="text-slate-600 text-sm sm:text-base">Every component is engineered to protect peptide active molecular chains from oxidation and contamination.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="bg-white rounded-3xl border border-slate-200/90 p-6 space-y-3 shadow-2xs">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2 py-0.5 rounded">Medical Dual-Chamber Vacuum Jar</span>
-          <h3 class="font-extrabold text-slate-900 text-base">PeptiDerm™ Airless Pump Unit</h3>
-          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Isolates 100% of air and UV exposure to keep sensitive peptide chains active until the very last drop.</p>
-        </div>
-
-        <div class="bg-white rounded-3xl border border-slate-200/90 p-6 space-y-3 shadow-2xs">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2 py-0.5 rounded">Medical Zinc-Alloy Spatula ($18 Value)</span>
-          <h3 class="font-extrabold text-slate-900 text-base">Cryo Sculpting Application Wand</h3>
-          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Maintains a natural cooling temperature to instantly soothe morning puffiness and boost lymphatic drainage.</p>
-        </div>
-
-        <div class="bg-white rounded-3xl border border-slate-200/90 p-6 space-y-3 shadow-2xs">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2 py-0.5 rounded">Clinical Tracking Card</span>
-          <h3 class="font-extrabold text-slate-900 text-base">28-Day Skin Renewal Journal</h3>
-          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Step-by-step weekly milestone guide to record improvements in wrinkle depth, elasticity, and hydration.</p>
-        </div>
-
-        <div class="bg-white rounded-3xl border border-slate-200/90 p-6 space-y-3 shadow-2xs">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2 py-0.5 rounded">Sterile Vacuum Seal</span>
-          <h3 class="font-extrabold text-slate-900 text-base">GMP Class 100,000 Certified Security Seal</h3>
-          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Direct dispatch from our certified laboratory facility with individual QR code authenticity tracking.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================== -->
-  <!-- 8. PATIENT & DERMATOLOGIST REVIEWS -->
-  <!-- ========================================== -->
-  <section class="bg-white py-16 px-4 sm:px-6 border-b border-slate-200">
     <div class="max-w-6xl mx-auto space-y-12">
       
       <div class="text-center space-y-3 max-w-3xl mx-auto">
         <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 uppercase tracking-wider">
-          VERIFIED FEEDBACK • CLINICAL & CONSUMER REVIEWS
+          <span>RECOMMENDED CELLULAR REGIMENS</span>
         </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-slate-900">Loved by Dermatologists & 3,800+ Verified Buyers</h2>
-        <div class="flex items-center justify-center gap-2 text-sm text-slate-700 font-bold">
-          <span class="text-amber-400">★★★★★</span>
-          <span>4.96 / 5.0 Overall Rating (88.6% 60-Day Repurchase Rate)</span>
-        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">Select Your 28-Day Anti-Aging Treatment</h2>
+        <p class="text-slate-600 text-sm sm:text-base">All kits include medical airless pumps, certified cleanroom manufacturing, and 30-day money-back guarantee.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Review 1 -->
-        <div class="bg-slate-50 rounded-3xl border border-slate-200/90 p-6 sm:p-7 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-amber-400 text-sm">★★★★★</span>
-              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">Verified Purchase</span>
-            </div>
-            <h3 class="font-black text-slate-900 text-base">“Finally, a true Retinol alternative with zero peeling or redness.”</h3>
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-              I have chronic rosacea and thin, delicate skin. Every retinoid I tried caused peeling within 3 days. PeptiDerm is pure magic—my crow's feet and forehead lines are visibly plumper after 3 weeks, and my redness is completely calm.
-            </p>
-            <div class="bg-sky-50 border border-sky-200 rounded-xl p-3 text-xs text-sky-900 font-medium">
-              ★ Dermatologist Note: Patient verified GHK-Cu tolerance with excellent epidermal barrier thickening.
-            </div>
-          </div>
-          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
-            <div>
-              <span class="font-extrabold text-slate-900 block">Dr. Sarah L., MD</span>
-              <span class="text-[11px]">Sensitive / Thinning Skin</span>
-            </div>
-            <div class="text-right">
-              <span class="text-[11px] text-sky-700 font-bold block">50ml Core Treatment</span>
-              <span class="text-[10px]">Verified 45 Days Use</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Review 2 -->
-        <div class="bg-slate-50 rounded-3xl border border-slate-200/90 p-6 sm:p-7 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-amber-400 text-sm">★★★★★</span>
-              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">Verified Purchase</span>
-            </div>
-            <h3 class="font-black text-slate-900 text-base">“The texture absorbs in seconds. No grease, perfect under makeup.”</h3>
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-              I hated anti-aging creams because they felt like grease smeared on my face and caused morning breakouts. This formula melts like snow into a velvety matte primer. My foundation goes on flawlessly and doesn't settle into smile lines.
-            </p>
-          </div>
-          <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
-            <div>
-              <span class="font-extrabold text-slate-900 block">Elena R., 42</span>
-              <span class="text-[11px]">Combination / Prone to Clogging</span>
-            </div>
-            <div class="text-right">
-              <span class="text-[11px] text-sky-700 font-bold block">100ml Clinical Double</span>
-              <span class="text-[10px]">Verified 60 Days Use</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================== -->
-  <!-- 9. THREE PRICING VARIANT CARDS -->
-  <!-- ========================================== -->
-  <section class="bg-slate-50 py-16 px-4 sm:px-6 border-b border-slate-200">
-    <div class="max-w-5xl mx-auto space-y-12">
-      
-      <div class="text-center space-y-3 max-w-2xl mx-auto">
-        <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 uppercase">
-          OFFICIAL PRICING • 1:1 SHOPIFY VARIANT MATRIX
-        </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-slate-900">Choose Your Clinical Cellular Rejuvenation Regimen</h2>
-        <p class="text-slate-600 text-sm">Dermatologists recommend following the 28-day skin cellular turnover cycle.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         
         <!-- 30ml Card -->
-        <div class="bg-white rounded-3xl border border-slate-200 p-6 flex flex-col justify-between space-y-6 shadow-2xs">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xl font-black text-slate-900">30ml Starter</h3>
-              <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded">Save $20</span>
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-6 shadow-sm">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-black text-xl text-slate-900">30ml Discovery Starter</h3>
+                <span class="text-xs text-slate-500 block mt-0.5">2-3 Weeks Daily Supply</span>
+              </div>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md shrink-0">
+                Save $20.00
+              </span>
             </div>
             <div class="flex items-baseline gap-2">
-              <span class="text-3xl font-black text-slate-900">$29</span>
-              <span class="text-sm text-slate-400 line-through">$49</span>
+              <span class="text-4xl font-black text-slate-900">$29.00</span>
+              <span class="text-base text-slate-400 line-through">$49.00</span>
             </div>
-            <p class="text-xs text-slate-500">2-3 Weeks Supply • Experience 3-second rapid absorption and instant barrier soothing.</p>
-            <ul class="text-xs text-slate-600 space-y-1.5 pt-3 border-t border-slate-100">
-              <li>✓ 30ml Medical Airless Bottle</li>
-              <li>✓ Free Global Tracked Shipping</li>
-              <li>✓ 30-Day Money-Back Guarantee</li>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              First Trial • Experience 3-Second Absorption & Instant Hydration
+            </p>
+            <ul class="space-y-2 pt-3 border-t border-slate-200 text-xs text-slate-700 font-medium">
+              <li class="flex items-center gap-2">✓ Medical Vacuum Airless Bottle</li>
+              <li class="flex items-center gap-2">✓ Dermatology Protocol Guide Card</li>
             </ul>
           </div>
           <button
             type="button"
-            onclick="selectThemeVariant('30ml', 29, 49, '30ml Starter', '{{ current_product.variants[0].id | default: '' }}'); openShopifyCartDrawer();"
-            class="w-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold py-3.5 rounded-xl text-xs transition-all cursor-pointer"
+            onclick="selectThemeVariant('30ml', 29, 49, null, '{{ current_product.variants[0].id | default: '' }}'); openShopifyCartDrawer();"
+            class="w-full py-4 rounded-xl font-black text-sm bg-slate-900 hover:bg-slate-800 text-white transition-all cursor-pointer"
           >
-            Select 30ml ($29)
+            Order Now (30ml • $29.00) →
           </button>
         </div>
 
-        <!-- 50ml Card (Popular) -->
-        <div class="bg-gradient-to-b from-sky-50 to-white rounded-3xl border-2 border-sky-600 p-6 flex flex-col justify-between space-y-6 shadow-xl relative md:-translate-y-2">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs font-black px-3.5 py-1 rounded-full shadow-xs whitespace-nowrap">
-            🔥 82% OF USERS CHOOSE THIS
+        <!-- 50ml Card (Most Popular) -->
+        <div class="bg-gradient-to-b from-sky-50 to-white border-2 border-sky-600 rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-6 shadow-xl md:-translate-y-2 relative">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-xs font-black px-4 py-1 rounded-full shadow-sm whitespace-nowrap">
+            🔥 82% OF CUSTOMERS CHOOSE THIS
           </div>
-          <div class="space-y-3 pt-2">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xl font-black text-slate-900">50ml Core Treatment</h3>
-              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Save $30 (38% OFF)</span>
+          <div class="space-y-4 pt-1">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-black text-xl text-slate-900">50ml Core Cellular Treatment</h3>
+                <span class="text-xs text-slate-500 block mt-0.5">6-8 Weeks (Full 28-Day Cycle)</span>
+              </div>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md shrink-0">
+                Save $30.00
+              </span>
             </div>
             <div class="flex items-baseline gap-2">
-              <span class="text-4xl font-black text-slate-900">$49</span>
-              <span class="text-sm text-slate-400 line-through">$79</span>
+              <span class="text-4xl font-black text-slate-900">$49.00</span>
+              <span class="text-base text-slate-400 line-through">$79.00</span>
             </div>
-            <p class="text-xs text-slate-600">Full 28-Day Cycle • Noticeably softens expression lines and boosts dermal collagen.</p>
-            <ul class="text-xs text-slate-700 space-y-1.5 pt-3 border-t border-slate-200 font-medium">
-              <li class="text-sky-800 font-bold">★ FREE Cryo Zinc-Alloy Sculpting Spatula ($18)</li>
-              <li>✓ FREE 28-Day Tracking Journal</li>
-              <li>✓ 50ml Dual-Chamber Vacuum Bottle</li>
-              <li>✓ Free Global Tracked Shipping</li>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Dermatologist Recommended • Witness 28-Day Deep Cellular Collagen Renewal
+            </p>
+            <ul class="space-y-2 pt-3 border-t border-slate-200 text-xs text-slate-700 font-medium">
+              <li class="flex items-center gap-2">✓ FREE Cryo Zinc-Alloy Sculpting Spatula ($18 Value)</li>
+              <li class="flex items-center gap-2">✓ FREE 28-Day Cellular Skin Tracking Journal</li>
+              <li class="flex items-center gap-2">✓ FREE Global Tracked Express Shipping</li>
             </ul>
           </div>
           <button
             type="button"
-            onclick="selectThemeVariant('50ml', 49, 79, '50ml Core Treatment', '{{ current_product.variants[1].id | default: default_variant.id }}'); openShopifyCartDrawer();"
-            class="w-full bg-sky-600 hover:bg-sky-500 text-white font-black py-4 rounded-xl text-sm transition-all shadow-md cursor-pointer active:scale-98"
+            onclick="selectThemeVariant('50ml', 49, 79, null, '{{ current_product.variants[1].id | default: default_variant.id }}'); openShopifyCartDrawer();"
+            class="w-full py-4 rounded-xl font-black text-sm bg-sky-600 hover:bg-sky-500 text-white shadow-md transition-all cursor-pointer"
           >
-            Claim 50ml Regimen ($49)
+            Order Now (50ml • $49.00) →
           </button>
         </div>
 
-        <!-- 100ml Card -->
-        <div class="bg-white rounded-3xl border border-slate-200 p-6 flex flex-col justify-between space-y-6 shadow-2xs">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xl font-black text-slate-900">100ml Clinical Double</h3>
-              <span class="text-xs font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded">Save $50 (39% OFF)</span>
+        <!-- 100ml Card (Best Value) -->
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-6 shadow-sm relative">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-sky-900 text-white text-xs font-black px-4 py-1 rounded-full shadow-sm whitespace-nowrap">
+            👑 BEST VALUE / CLINICAL COURSE
+          </div>
+          <div class="space-y-4 pt-1">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="font-black text-xl text-slate-900">100ml Clinical Double Course</h3>
+                <span class="text-xs text-slate-500 block mt-0.5">3-4 Months Intensive Regimen</span>
+              </div>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md shrink-0">
+                Save $50.00
+              </span>
             </div>
             <div class="flex items-baseline gap-2">
-              <span class="text-3xl font-black text-slate-900">$79</span>
-              <span class="text-sm text-slate-400 line-through">$129</span>
+              <span class="text-4xl font-black text-slate-900">$79.00</span>
+              <span class="text-base text-slate-400 line-through">$129.00</span>
             </div>
-            <p class="text-xs text-slate-500">3-4 Months Intensive Course • Face & neck deep collagen lift and restructuring.</p>
-            <ul class="text-xs text-slate-600 space-y-1.5 pt-3 border-t border-slate-100">
-              <li class="text-sky-800 font-bold">★ FREE 30ml Travel Edition + Cryo Spatula</li>
-              <li>✓ 100ml Large Clinical Edition</li>
-              <li>✓ Lifetime VIP Dermatology Access</li>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Face & Neck Intensive Lift • Total Dermal Extracellular Matrix Restructure
+            </p>
+            <ul class="space-y-2 pt-3 border-t border-slate-200 text-xs text-slate-700 font-medium">
+              <li class="flex items-center gap-2">✓ FREE 30ml Travel Discovery Edition ($29 Value)</li>
+              <li class="flex items-center gap-2">✓ FREE Cryo Zinc-Alloy Sculpting Spatula ($18 Value)</li>
+              <li class="flex items-center gap-2">✓ Lifetime VIP Dermatology Consultation Access</li>
             </ul>
           </div>
           <button
             type="button"
-            onclick="selectThemeVariant('100ml', 79, 129, '100ml Clinical Course', '{{ current_product.variants[2].id | default: '' }}'); openShopifyCartDrawer();"
-            class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl text-xs transition-all cursor-pointer"
+            onclick="selectThemeVariant('100ml', 79, 129, null, '{{ current_product.variants[2].id | default: '' }}'); openShopifyCartDrawer();"
+            class="w-full py-4 rounded-xl font-black text-sm bg-slate-900 hover:bg-slate-800 text-white transition-all cursor-pointer"
           >
-            Select 100ml ($79)
+            Order Now (100ml • $79.00) →
           </button>
         </div>
 
@@ -1083,315 +847,247 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- 10. CLINICAL FAQ ACCORDION -->
+  <!-- 7. ACCORDION FAQ SECTION -->
   <!-- ========================================== -->
   <section class="bg-white py-16 px-4 sm:px-6 border-b border-slate-200">
     <div class="max-w-3xl mx-auto space-y-10">
       
       <div class="text-center space-y-3">
         <div class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-900 text-xs font-black px-3.5 py-1 rounded-full border border-sky-200 tracking-wider uppercase">
-          CLINICAL ADVISORY • FREQUENTLY ASKED QUESTIONS
+          FREQUENTLY ASKED QUESTIONS
         </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-slate-900">Frequently Asked Questions</h2>
-        <p class="text-slate-600 text-sm">Direct answers from our clinical formulation advisory board.</p>
+        <h2 class="text-2xl sm:text-4xl font-black text-slate-900">Clinical Dermatology Inquiries</h2>
+        <p class="text-slate-600 text-sm">Everything you need to know regarding bio-peptides, clinical cycles, and skin compatibility.</p>
       </div>
 
       <div class="space-y-3">
+        
         <!-- FAQ 1 -->
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
-          <button type="button" onclick="toggleThemeFaq('faq-1')" class="w-full p-4 text-left flex items-center justify-between font-black text-slate-900 text-sm cursor-pointer">
-            <span>How is PeptiDerm fundamentally different from standard Retinol creams?</span>
-            <span id="icon-faq-1">▼</span>
+        <div class="bg-slate-50 border border-slate-200/90 rounded-2xl overflow-hidden">
+          <button type="button" onclick="toggleThemeFaq(1)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-100 transition-colors">
+            <span class="font-extrabold text-slate-900 text-sm sm:text-base">How do signal bio-peptides differ from retinoids and chemical acids?</span>
+            <span id="icon-1" class="text-slate-400 font-bold">▼</span>
           </button>
-          <div id="content-faq-1" class="px-4 pb-4 text-xs text-slate-600 leading-relaxed">
-            Retinol works through forced chemical exfoliation, which thins the stratum corneum and frequently causes redness, peeling, and UV photosensitivity. PeptiDerm uses bio-mimetic cellular peptides that signal fibroblasts to synthesize collagen from within without peeling. It offers 99.8% tolerance, zero photosensitivity, and requires no acclimation period.
+          <div id="content-1" class="hidden px-4 sm:px-5 pb-5 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-200/60 bg-white">
+            Unlike high-strength retinoids or exfoliating acids that induce forced cell turnover through chemical irritation and epidermal peeling, signal peptides are biocompatible cellular messengers. They bond directly to cell receptors to instruct fibroblasts to synthesize collagen natively, achieving 99.8% physiological tolerance without barrier disruption.
           </div>
         </div>
 
         <!-- FAQ 2 -->
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
-          <button type="button" onclick="toggleThemeFaq('faq-2')" class="w-full p-4 text-left flex items-center justify-between font-black text-slate-900 text-sm cursor-pointer">
-            <span>Is this safe for sensitive, rosacea-prone, or post-procedure skin?</span>
-            <span id="icon-faq-2">▼</span>
+        <div class="bg-slate-50 border border-slate-200/90 rounded-2xl overflow-hidden">
+          <button type="button" onclick="toggleThemeFaq(2)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-100 transition-colors">
+            <span class="font-extrabold text-slate-900 text-sm sm:text-base">When should I expect to see visible clinical results?</span>
+            <span id="icon-2" class="text-slate-400 font-bold">▼</span>
           </button>
-          <div id="content-faq-2" class="px-4 pb-4 text-xs text-slate-600 leading-relaxed hidden">
-            Yes, absolutely. Our formula is 100% free of fragrances, drying alcohols, parabens, and mineral oils. With bio-active Copper Tripeptide and 5 skin-identical Ceramides, it actively calms redness and rebuilds the lipid matrix while delivering potent anti-aging benefits.
+          <div id="content-2" class="hidden px-4 sm:px-5 pb-5 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-200/60 bg-white">
+            In our 28-day double-blind clinical trials: Day 1 delivers immediate 3-second matte hydration and skin barrier comfort. By Day 14, dynamic expression micro-lines soften by -28.4%. By Day 28, full dermal collagen matrix regeneration achieves -42.8% wrinkle volume reduction and +68.4% collagen density.
           </div>
         </div>
 
         <!-- FAQ 3 -->
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
-          <button type="button" onclick="toggleThemeFaq('faq-3')" class="w-full p-4 text-left flex items-center justify-between font-black text-slate-900 text-sm cursor-pointer">
-            <span>When should I expect to see visible wrinkle reduction?</span>
-            <span id="icon-faq-3">▼</span>
+        <div class="bg-slate-50 border border-slate-200/90 rounded-2xl overflow-hidden">
+          <button type="button" onclick="toggleThemeFaq(3)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-100 transition-colors">
+            <span class="font-extrabold text-slate-900 text-sm sm:text-base">Is PeptiDerm safe for ultra-sensitive or post-procedure skin?</span>
+            <span id="icon-3" class="text-slate-400 font-bold">▼</span>
           </button>
-          <div id="content-faq-3" class="px-4 pb-4 text-xs text-slate-600 leading-relaxed hidden">
-            [Immediate / 10 Minutes]: Micro-liposomes absorb instantly, boosting moisture and softening surface dry lines. [14 Days]: Skin texture becomes silky and tone brightens. [28-Day Full Cycle]: Double-blind clinical testing proves an average +68.4% increase in dermal collagen density and -42.8% reduction in deep wrinkle volume.
+          <div id="content-3" class="hidden px-4 sm:px-5 pb-5 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-200/60 bg-white">
+            Yes. PeptiDerm is 100% fragrance-free, alcohol-free, paraben-free, mineral oil-free, and cruelty-free. It has been tested and certified by Swiss SGS with a 99.8% non-irritation tolerance rate, making it ideal for reactive and post-laser skin.
           </div>
         </div>
 
-        <!-- FAQ 4 -->
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
-          <button type="button" onclick="toggleThemeFaq('faq-4')" class="w-full p-4 text-left flex items-center justify-between font-black text-slate-900 text-sm cursor-pointer">
-            <span>How does the 30-Day Money-Back Guarantee work?</span>
-            <span id="icon-faq-4">▼</span>
-          </button>
-          <div id="content-faq-4" class="px-4 pb-4 text-xs text-slate-600 leading-relaxed hidden">
-            If for any reason you do not experience visible improvements in skin texture, firmness, or comfort within 30 days, simply contact our support team for an immediate, full refund. You do not even need to return the used bottle.
-          </div>
-        </div>
       </div>
 
     </div>
   </section>
 
   <!-- ========================================== -->
-  <!-- 11. FINAL MEDICAL CONVERSION CARD -->
+  <!-- 8. FINAL CONVERSION CTA -->
   <!-- ========================================== -->
   <section class="bg-gradient-to-b from-white via-sky-50/40 to-slate-100 py-16 px-4 sm:px-6">
     <div class="max-w-4xl mx-auto bg-gradient-to-br from-slate-900 via-sky-950 to-slate-950 text-white border-2 border-sky-600/40 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-      
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
         
         <div class="md:col-span-5 space-y-3">
           <div class="relative aspect-4/3 rounded-2xl overflow-hidden border border-slate-700 shadow-md bg-slate-950">
             <img
-              src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80"
-              alt="PeptiDerm Multi-Peptide Cream"
-              class="w-full h-full object-contain"
+              src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85"
+              alt="PeptiDerm Cellular Renewal Multi-Peptide Cream"
+              class="w-full h-full object-cover object-center"
             >
-            <div class="absolute top-2.5 left-2.5 bg-sky-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wide">
-              Direct Lab Special
+            <div class="absolute top-2.5 left-2.5 bg-sky-500 text-slate-950 font-black text-[10px] px-2.5 py-1 rounded-full uppercase">
+              CLINICAL EDITION
             </div>
+          </div>
+          <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-3 text-center text-xs space-y-1">
+            <span class="font-extrabold text-white block">PeptiDerm™ Cellular Renewal Multi-Peptide Cream</span>
+            <span class="text-slate-400 text-[11px] block">28-Day Metabolic Cellular Cycle</span>
           </div>
         </div>
 
         <div class="md:col-span-7 space-y-5 text-left">
           <div class="space-y-2">
             <div class="inline-flex items-center gap-1.5 bg-sky-900/80 text-sky-300 text-xs font-bold px-3 py-1 rounded-full border border-sky-500/40">
-              <span>30-DAY CELLULAR RENEWAL GUARANTEE</span>
+              <span>RISK-FREE 30-DAY CLINICAL TRIAL</span>
             </div>
-            
             <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
-              Give your skin the power of gentle, deep collagen regeneration.
+              Begin Your 28-Day Collagen Renewal Cycle
             </h2>
-
             <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              No peeling. No redness. No compromises. Order today and experience visible wrinkle volume reduction in 28 days.
+              Experience the patented multi-peptide anti-aging breakthrough with 100% satisfaction guarantee.
             </p>
           </div>
 
-          <button
-            type="button"
-            onclick="openShopifyCartDrawer()"
-            class="w-full bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-black text-lg py-4 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
-          >
-            <span>Claim Your 28-Day Regimen • Free Worldwide Shipping</span>
-            <svg class="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </button>
+          <div class="flex items-baseline gap-3">
+            <span class="text-3xl sm:text-4xl font-black text-white">$49.00</span>
+            <span class="text-lg text-slate-400 line-through font-semibold">$79.00</span>
+            <span class="text-xs bg-emerald-950 text-emerald-300 font-bold px-2.5 py-1 rounded-full border border-emerald-700">
+              50ml • Save $30.00
+            </span>
+          </div>
+
+          <div>
+            <button
+              type="button"
+              onclick="openShopifyCartDrawer()"
+              class="w-full bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-300 hover:to-sky-400 text-slate-950 font-black text-base sm:text-lg py-4 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+            >
+              <span>Order Now • 30-Day Money-Back Guarantee</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+            <div class="flex items-center justify-center gap-4 text-xs font-semibold text-slate-400 mt-3">
+              <span>✓ Free Express Shipping</span>
+              <span>•</span>
+              <span>✓ 30-Day Money-Back</span>
+              <span>•</span>
+              <span>✓ ISO 22716 Certified</span>
+            </div>
+          </div>
         </div>
 
       </div>
-
     </div>
   </section>
-
-  <!-- ========================================== -->
-  <!-- 12. STICKY MOBILE BUY BAR -->
-  <!-- ========================================== -->
-  <div class="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 p-3 shadow-2xl">
-    <div class="flex items-center justify-between gap-3 max-w-md mx-auto">
-      <div class="flex flex-col">
-        <div class="flex items-baseline gap-1.5">
-          <span id="mobile-price-display" class="text-xl font-black text-white">$49</span>
-          <span id="mobile-compare-display" class="text-xs text-slate-400 line-through">$79</span>
-        </div>
-        <span class="text-[10px] text-sky-400 font-bold">50ml (Save $30)</span>
-      </div>
-
-      <button
-        type="button"
-        onclick="openShopifyCartDrawer()"
-        class="flex-1 bg-gradient-to-r from-sky-400 to-sky-500 active:scale-98 text-slate-950 font-black text-sm py-3 px-4 rounded-xl shadow-md flex items-center justify-center gap-1.5 transition-all cursor-pointer"
-      >
-        <span>Order Now</span>
-        <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-      </button>
-    </div>
-  </div>
 
 </div>
 
 <!-- ========================================== -->
-<!-- 13. SHOPIFY CART DRAWER MODAL OVERLAY -->
+  <!-- 9. SHOPIFY INSTANT CART DRAWER MODAL -->
+  <!-- ========================================== -->
+  <div id="shopify-cart-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 text-left">
+      
+      <!-- Drawer Header -->
+      <div class="bg-slate-900 text-white p-5 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="font-black text-base">Your Selected Clinical Course</span>
+        </div>
+        <button type="button" onclick="closeShopifyCartDrawer()" class="text-slate-400 hover:text-white text-xl font-bold cursor-pointer">
+          ✕
+        </button>
+      </div>
+
+      <!-- Drawer Body -->
+      <div class="p-6 space-y-5">
+        
+        <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-200">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=85" alt="Item" class="w-16 h-16 rounded-xl object-cover bg-white border border-slate-200">
+          <div class="flex-1 min-w-0">
+            <h4 id="modal-cart-title" class="font-black text-slate-900 text-sm truncate">50ml Core Cellular Treatment</h4>
+            <span class="text-xs text-slate-500 block">7 Bio-Mimetic Peptides Complex</span>
+            <div class="flex items-baseline gap-2 mt-1">
+              <span id="modal-cart-price" class="font-black text-sky-700 text-base">$49.00</span>
+              <span class="text-xs text-emerald-700 font-bold">In Stock</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2 text-xs text-slate-600 bg-sky-50/60 p-3.5 rounded-2xl border border-sky-100">
+          <div class="flex justify-between">
+            <span>Clinical Formulation:</span>
+            <strong class="text-slate-900">100% Physiological Biocompatible</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Global Express Shipping:</span>
+            <strong class="text-emerald-700">FREE ($12.00 Value)</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Money-Back Guarantee:</span>
+            <strong class="text-slate-900">30 Days Risk-Free</strong>
+          </div>
+        </div>
+
+        <!-- Checkout Action Button -->
+        <button
+          type="button"
+          id="checkout-action-btn"
+          onclick="submitToShopifyCheckout()"
+          class="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black text-base py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+        >
+          <span>Proceed to Secure Checkout</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+
+        <div class="text-center text-[10px] text-slate-400 flex items-center justify-center gap-3">
+          <span>🔒 256-Bit SSL Encryption</span>
+          <span>•</span>
+          <span>Direct Shopify Checkout</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
 <!-- ========================================== -->
-<div id="shopify-cart-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-sm hidden">
-  <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 text-slate-900 relative">
-    
-    <div class="bg-gradient-to-r from-slate-900 via-sky-950 to-slate-900 text-white p-4 sm:p-5 flex items-center justify-between">
-      <div>
-        <h3 class="font-black text-sm sm:text-base">Shopify Instant Cart & Checkout</h3>
-        <p class="text-[10px] text-sky-300">PeptiDerm™ Direct Medical Dispatch</p>
+<!-- 10. STICKY MOBILE CONVERSION BAR -->
+<!-- ========================================== -->
+<div class="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-lg border-t border-slate-800 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-2xl">
+  <div class="flex items-center justify-between gap-3 max-w-md mx-auto">
+    <div class="flex flex-col shrink-0">
+      <div class="flex items-baseline gap-1.5">
+        <span id="mobile-price-display" class="text-xl font-black text-white">$49.00</span>
+        <span id="mobile-compare-display" class="text-xs text-slate-500 line-through">$79.00</span>
       </div>
-      <button type="button" onclick="closeShopifyCartDrawer()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-300 flex items-center justify-center cursor-pointer hover:bg-slate-700">
-        ✕
-      </button>
+      <span class="text-[10px] text-emerald-400 font-bold">✓ 30-Day Guarantee</span>
     </div>
-
-    <div class="p-5 sm:p-6 space-y-4 text-xs sm:text-sm">
-      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 flex items-center justify-between">
-        <div>
-          <h4 id="modal-cart-title" class="font-black text-slate-900 text-sm">50ml Core Treatment</h4>
-          <span id="modal-cart-price" class="text-sky-700 font-bold">$49.00</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-lg p-1">
-          <span class="font-bold text-xs px-2">Qty: 1</span>
-        </div>
-      </div>
-
-      <div class="bg-sky-50 border border-sky-200 rounded-xl p-3 flex items-center justify-between">
-        <div>
-          <span class="font-extrabold text-slate-900 text-xs block">Promo Code PEPTIDE10 Applied</span>
-          <span class="text-[10px] text-sky-700">First Order 10% Off</span>
-        </div>
-        <span class="font-black text-emerald-700">-$4.90</span>
-      </div>
-
-      <div class="space-y-1.5 pt-2 border-t border-slate-100 text-xs">
-        <div class="flex justify-between text-slate-600">
-          <span>Worldwide Tracked Shipping:</span>
-          <span class="text-emerald-600 font-bold">FREE</span>
-        </div>
-        <div class="flex justify-between text-slate-900 font-black text-base pt-2 border-t border-slate-200">
-          <span>Estimated Total:</span>
-          <span id="modal-cart-total" class="text-sky-700">$44.10</span>
-        </div>
-      </div>
-
-      <button
-        type="button"
-        id="checkout-action-btn"
-        onclick="submitToShopifyCheckout()"
-        class="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-black py-4 rounded-xl text-base shadow-lg transition-all cursor-pointer"
-      >
-        Proceed to Secure Checkout
-      </button>
-
-      <div class="text-center text-[11px] text-slate-500 pt-1">
-        ✓ 256-Bit SSL Encryption • 30-Day Money-Back Guarantee
-      </div>
-    </div>
-
+    <button
+      type="button"
+      onclick="openShopifyCartDrawer()"
+      class="flex-1 bg-gradient-to-r from-sky-400 to-sky-500 active:scale-95 text-slate-950 font-black text-sm py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer select-none"
+    >
+      <span data-i18n="stickyMobile.orderNow">Order Now • 30-Day Guarantee</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </button>
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "PeptiDerm Landing Page",
+  "name": "PeptiDerm DTC Landing",
   "settings": [
     {
-      "type": "header",
-      "content": "Brand & Header Configuration"
-    },
-    {
-      "type": "text",
-      "id": "brand_name",
-      "label": "Brand Name",
-      "default": "PeptiDerm",
-      "info": "Defaults to Shopify product vendor or store name if blank"
-    },
-    {
-      "type": "text",
-      "id": "brand_tagline",
-      "label": "Brand Tagline",
-      "default": "Clinical Dermatology Laboratories"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_image",
-      "label": "Custom Brand Logo"
-    },
-    {
-      "type": "header",
-      "content": "Top Announcement Bar"
-    },
-    {
-      "type": "text",
-      "id": "announcement_badge",
-      "label": "Announcement Badge",
-      "default": "FLASH SPECIAL"
-    },
-    {
-      "type": "text",
-      "id": "announcement_text",
-      "label": "Announcement Text",
-      "default": "UP TO 41% OFF • FREE CRYO SPATULA WITH 50ML/100ML • WORLDWIDE EXPRESS SHIPPING"
-    },
-    {
-      "type": "text",
-      "id": "top_left_text",
-      "label": "Top Left Guarantee",
-      "default": "GMP MEDICAL LAB CERTIFIED • SWISS SGS DERMATOLOGICALLY TESTED"
-    },
-    {
-      "type": "text",
-      "id": "top_right_text",
-      "label": "Top Right Guarantee",
-      "default": "30-Day Money-Back Guarantee"
-    },
-    {
-      "type": "header",
-      "content": "Header Feature Badges & CTA"
-    },
-    {
-      "type": "text",
-      "id": "feature_1_text",
-      "label": "Feature Badge 1",
-      "default": "7 Bio-Mimetic Signal Peptides"
-    },
-    {
-      "type": "text",
-      "id": "feature_2_text",
-      "label": "Feature Badge 2",
-      "default": "28-Day Clinical Trial Proof"
-    },
-    {
-      "type": "text",
-      "id": "feature_3_text",
-      "label": "Feature Badge 3",
-      "default": "99.8% Tolerance Rate"
-    },
-    {
-      "type": "text",
-      "id": "header_cta_text",
-      "label": "Header CTA Text",
-      "default": "Order Now"
-    },
-    {
-      "type": "header",
-      "content": "Hero & Product Assignment"
+      "type": "product",
+      "id": "product",
+      "label": "Select Shopify Product"
     },
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
+      "label": "Hero Headline",
       "default": "7 Bio-Mimetic Peptides • Rebuild Youthful Collagen in 28 Days"
     },
     {
       "type": "textarea",
       "id": "subheading",
-      "label": "Subheading",
+      "label": "Hero Subtitle",
       "default": "Resolve the anti-aging contradiction: potent clinical wrinkle repair without barrier damage, peeling, or irritation. Experience 99.8% physiological tolerance and -42.8% wrinkle depth reduction."
-    },
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Link Shopify Product (Optional)"
     }
   ],
   "presets": [
     {
-      "name": "Default PeptiDerm Landing"
+      "name": "PeptiDerm DTC Clinical Landing",
+      "category": "Custom Landing Pages"
     }
   ]
 }

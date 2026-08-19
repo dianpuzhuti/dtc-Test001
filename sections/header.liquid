@@ -1,49 +1,66 @@
-<header class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-[37px] z-40">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-4">
+<header id="shopify-main-header" class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-[33px] sm:top-[37px] z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-18 flex items-center justify-between gap-3 sm:gap-4">
     
-    <!-- Logo & Brand -->
-    <a href="{{ routes.root_url }}" class="flex items-center gap-2.5 group">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-600 to-slate-900 flex items-center justify-center text-white font-black text-xl shadow-md group-hover:scale-105 transition-transform">
-        P
-      </div>
-      <div>
-        <div class="flex items-center gap-1.5">
-          <span class="font-black text-lg sm:text-xl text-slate-900 tracking-tight">
+    <!-- Logo & Brand Identity -->
+    <a href="{{ routes.root_url }}" class="flex items-center gap-2 sm:gap-3 min-w-0 group">
+      {%- if section.settings.logo_image != blank -%}
+        <img src="{{ section.settings.logo_image | image_url: width: 100 }}" alt="{{ section.settings.brand_name | default: 'PeptiDerm' }}" class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl object-contain">
+      {%- else -%}
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-sky-600 to-slate-900 flex items-center justify-center text-white font-black text-base sm:text-xl shadow-md shrink-0 group-hover:scale-105 transition-transform">
+          {{ section.settings.brand_name | default: 'PeptiDerm' | slice: 0, 1 | upcase }}
+        </div>
+      {%- endif -%}
+      <div class="min-w-0">
+        <div class="flex items-center gap-1">
+          <span class="font-black text-base sm:text-xl text-slate-900 tracking-tight truncate">
             {{ section.settings.brand_name | default: 'PeptiDerm' }}
           </span>
-          <span class="text-xs text-sky-600 font-extrabold">™</span>
+          <span class="text-[10px] sm:text-xs text-sky-600 font-extrabold">™</span>
         </div>
-        <span class="text-[10px] uppercase font-bold text-slate-600 tracking-widest block -mt-0.5">
+        <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-500 tracking-wider block -mt-0.5 truncate max-w-[130px] sm:max-w-xs">
           {{ section.settings.brand_tagline | default: 'Clinical Dermatology Laboratories' }}
         </span>
       </div>
     </a>
 
-    <!-- Clinical Badges -->
-    <div class="hidden lg:flex items-center gap-6 text-xs text-slate-600 font-semibold">
+    <!-- Clinical Proof Badges (Hidden on mobile/tablet, visible on wide screens) -->
+    <div class="hidden xl:flex items-center gap-5 text-xs text-slate-600 font-semibold whitespace-nowrap">
       <div class="flex items-center gap-1.5">
-        <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        <span>7 Bio-Mimetic Peptides</span>
+        <svg class="w-3.5 h-3.5 text-sky-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span data-i18n="header.features.0">{{ section.settings.feature_1 | default: '7 Bio-Mimetic Signal Peptides' }}</span>
       </div>
       <div class="flex items-center gap-1.5">
-        <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
-        <span>28-Day Clinical Proof</span>
+        <svg class="w-3.5 h-3.5 text-sky-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+        <span data-i18n="header.features.1">{{ section.settings.feature_2 | default: '28-Day Clinical Proof' }}</span>
       </div>
       <div class="flex items-center gap-1.5">
-        <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span>99.8% Tolerance Rate</span>
+        <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span data-i18n="header.features.2">{{ section.settings.feature_3 | default: '99.8% Tolerance Rate' }}</span>
       </div>
     </div>
 
-    <!-- Action Button -->
-    <div class="flex items-center gap-3">
+    <!-- Right Header Actions: Multi-Language Selector + CTA -->
+    <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+      
+      <!-- Desktop/Tablet Language Switcher -->
+      <div class="hidden sm:flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-bold text-slate-700">
+        <select onchange="changeShopifyLanguage(this.value)" class="shopify-lang-select bg-transparent text-slate-800 font-black text-xs px-2 py-1 outline-none cursor-pointer">
+          <option value="en">🇺🇸 EN ($)</option>
+          <option value="fr">🇫🇷 FR (€)</option>
+          <option value="ru">🇷🇺 RU (₽)</option>
+          <option value="es">🇪🇸 ES (€)</option>
+        </select>
+      </div>
+
+      <!-- Direct Order Button -->
       <button
         type="button"
         onclick="openShopifyCartDrawer()"
-        class="bg-slate-900 hover:bg-sky-950 text-white font-black text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-xl shadow-xs transition-all flex items-center gap-2 cursor-pointer"
+        class="bg-slate-900 hover:bg-sky-950 text-white font-black text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-xs transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer active:scale-98 whitespace-nowrap"
       >
-        <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-        <span>Order Now (From $29)</span>
+        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <span class="hidden xs:inline" data-i18n="header.orderNowFull">Order Now (From $29)</span>
+        <span class="xs:hidden" data-i18n="header.orderNow">Order Now</span>
       </button>
     </div>
 
@@ -65,6 +82,29 @@
       "id": "brand_tagline",
       "label": "Brand Tagline",
       "default": "Clinical Dermatology Laboratories"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "feature_1",
+      "label": "Feature Badge 1",
+      "default": "7 Bio-Mimetic Signal Peptides"
+    },
+    {
+      "type": "text",
+      "id": "feature_2",
+      "label": "Feature Badge 2",
+      "default": "28-Day Clinical Proof"
+    },
+    {
+      "type": "text",
+      "id": "feature_3",
+      "label": "Feature Badge 3",
+      "default": "99.8% Tolerance Rate"
     }
   ]
 }
