@@ -8,6 +8,7 @@
  * ------------------------------------------------------------
  */
 {
+  "layout": "theme.landing",
   "sections": {
     "content_standing-aid-livingroom": {
       "type": "landing-standing-aid-livingroom",
