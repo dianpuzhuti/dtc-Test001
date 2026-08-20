@@ -8,6 +8,7 @@
  * ------------------------------------------------------------
  */
 {
+  "layout": "theme.landing",
   "sections": {
     "content_rollator-walker-foldable": {
       "type": "landing-rollator-walker-foldable",
