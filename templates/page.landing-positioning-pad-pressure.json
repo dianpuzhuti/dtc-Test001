@@ -8,6 +8,7 @@
  * ------------------------------------------------------------
  */
 {
+  "layout": "theme.landing",
   "sections": {
     "content_positioning-pad-pressure": {
       "type": "landing-positioning-pad-pressure",
