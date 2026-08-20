@@ -8,6 +8,7 @@
  * ------------------------------------------------------------
  */
 {
+  "layout": "theme.landing",
   "sections": {
     "content_standing-aid-safety": {
       "type": "landing-standing-aid-safety",
