@@ -8,6 +8,7 @@
  * ------------------------------------------------------------
  */
 {
+  "layout": "theme.landing",
   "sections": {
     "content_cooking-blender-smoothie": {
       "type": "landing-cooking-blender-smoothie",

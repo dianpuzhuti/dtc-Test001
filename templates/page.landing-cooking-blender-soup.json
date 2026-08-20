@@ -8,6 +8,7 @@
  * ------------------------------------------------------------
  */
 {
+  "layout": "theme.landing",
   "sections": {
     "content_cooking-blender-soup": {
       "type": "landing-cooking-blender-soup",
